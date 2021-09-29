@@ -71,9 +71,9 @@ function SignupPage(props) {
             <Form.Control type="password" placeholder="Password" name="password" value={password} onChange={handlePassword} />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicMerge">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" name="password" value={password} onChange={handlePassword} />
+          <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="text" placeholder="Username" name="name" value={name} onChange={handleName} />
           </Form.Group>
 
           <Button variant="primary" type="submit">
@@ -81,8 +81,8 @@ function SignupPage(props) {
           </Button>
         </Form>
         { errorMessage && <p className="error-message">{errorMessage}</p> }
-        <p>Don't have an account yet?</p>
-        <Link to={"/signup"}> Sign Up</Link>
+        <p>Already have an account?</p>
+    //  <Link to={"/login"}> Login</Link>
       </Col>
     </Row>
   </Container>
