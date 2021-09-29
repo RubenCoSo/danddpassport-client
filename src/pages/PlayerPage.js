@@ -6,6 +6,7 @@ function PlayerPage() {
     return (
   <Container>
 <Link to={"/characterInfo"}><Button variant="primary">Info</Button></Link>
+
 <Card style={{ width: '18rem' }}>
   <Card.Img variant="top" src="holder.js/100px180" />
   
@@ -18,7 +19,15 @@ function PlayerPage() {
     
   </Card.Body>
 </Card>
+
+<div className="mb-2">
+<Link to={"/CreateNewCharacter"}><Button variant="primary" size="lg">
+      New Character
+    </Button>{' '}</Link>
+    </div>
         </Container>
+
+
         )
     }
 //prueba
