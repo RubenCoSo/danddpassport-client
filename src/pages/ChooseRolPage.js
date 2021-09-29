@@ -9,11 +9,13 @@ const API_URL = process.env.REACT_APP_API_URL
 export default function ChooseRolPage() {
     const {user} = useContext(AuthContext)
 
-    const playerButton=()=>{
-        const reqBody = user._id
+    const storedToken = localStorage.getItem('authToken')
 
-        console.log(reqBody)
-        axios.post(`${API_URL}/chooserol/player`,reqBody)
+    const playerButton=()=>{
+        const _id = `ObjectId("${user._id}")`
+
+        console.log({_id})
+        axios.put(`${API_URL}/chooserol/player`,{_id},{ headers: { Authorization: `Bearer ${storedToken}` } })
         .then((returnInfo)=>{
             return <Redirect to='/playerpage'/>
         })
