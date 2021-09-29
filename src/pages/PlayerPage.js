@@ -21,5 +21,5 @@ function PlayerPage() {
         </Container>
         )
     }
-
+//prueba
 export default PlayerPage;
