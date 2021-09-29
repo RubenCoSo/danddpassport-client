@@ -13,6 +13,8 @@ function LoginPage(props) {
 
   const { logInUser } = useContext(AuthContext);
 
+  
+
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
