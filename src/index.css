@@ -108,10 +108,6 @@ nav li {
   background-color: #dfeef9;
 }
 
-.container {
-  padding-top: 50%;
-}
-
 #inlineFormInputGroupUsername {
   text-align: center;
 }
@@ -130,8 +126,20 @@ nav li {
   text-decoration: none;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+nav {
+  background-color: rgb(245, 69, 38);
+}
+
+h1 {
+  color: rgb(0, 0, 0);
+  font-size: 10px;
+  text-shadow: 2px 2px 0 #aaa, 12px 12px 8px rgb(245, 69, 38);
+  text-align: center;
+  font-size: 30px;
+}
+
+h2 {
+  text-align: top;
+  font-size: 50px;
+  text-shadow: 2px 2px 0 #aaa, 12px 12px 8px rgb(245, 69, 38);
 }
