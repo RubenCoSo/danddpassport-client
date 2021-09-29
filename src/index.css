@@ -122,8 +122,16 @@ nav li {
 
 #login {
   font-size: 25px;
-  width: 150%;
+  width: 50%;
   color: black;
   background-color: rgb(245, 69, 38);
-  border-color: black;
+  border: solid black 2px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
