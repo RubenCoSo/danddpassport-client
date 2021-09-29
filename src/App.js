@@ -13,6 +13,7 @@ import AnonRoute from "./components/AnonRoute";        // <== IMPORT
 import PlayerPage from "./pages/PlayerPage";
 import CreateNewCharacter from "./pages/CreateNewCharacter"
 import ChooseRolPage from "./pages/ChooseRolPage";
+import CharacterInfo from "./pages/CharacterInfo";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route exact path="/playerpage" component={PlayerPage} />
         <Route exact path="/createnewcharacter" component={CreateNewCharacter}/>
         <Route exact path="/chooserol" component={ChooseRolPage}/>
+        <Route exact path="/characterinfo" component={CharacterInfo}/>
         
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
         

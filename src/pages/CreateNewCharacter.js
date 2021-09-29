@@ -8,5 +8,5 @@ function CreateNewCharacter() {
 
         )
     }
-//prueba
+
 export default CreateNewCharacter;
