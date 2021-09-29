@@ -24,7 +24,11 @@ function Navbar() {
           </>)
         : 
         (<>
+<<<<<<< Updated upstream
           <Link to="/login"> <button>logout</button> </Link>
+=======
+          <Link to="/login"> <button>Login</button> </Link>
+>>>>>>> Stashed changes
         </>)
       }
     </nav> */}
