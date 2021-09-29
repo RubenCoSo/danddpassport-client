@@ -12,6 +12,7 @@ import PrivateRoute from "./components/PrivateRoute";    // <== IMPORT
 import AnonRoute from "./components/AnonRoute";        // <== IMPORT
 import PlayerPage from "./pages/PlayerPage";
 import CreateNewCharacter from "./pages/CreateNewCharacter"
+import ChooseRolPage from "./pages/ChooseRolPage";
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
 
       <Switch>      
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/PlayerPage" component={PlayerPage} />
-        <Route exact path="/CreateNewCharacter" component={CreateNewCharacter}/>
+        <Route exact path="/playerpage" component={PlayerPage} />
+        <Route exact path="/createnewcharacter" component={CreateNewCharacter}/>
+        <Route exact path="/chooserol" component={ChooseRolPage}/>
         
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
         
