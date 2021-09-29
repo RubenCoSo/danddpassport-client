@@ -6,7 +6,7 @@ function HomePage() {
     <Container>
   
     <Col xs="auto" className="my-1" id="login">
-    <Link button to={"/login"}> <b>Login</b> </Link>
+    <Link button to={"/login"}> <b>Login</b></Link>
 
       
     </Col>
