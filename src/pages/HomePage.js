@@ -7,16 +7,24 @@ function HomePage() {
   <Row className="align-items-center">
     <Col sm={3} className="my-1">
       <Form.Label htmlFor="inlineFormInputName" visuallyHidden>
-       Name
+       Mail
       </Form.Label>
-      <Form.Control id="inlineFormInputName" placeholder="User Name" />
+      <Form.Control id="inlineFormInputName" placeholder="Email" />
     </Col>
     <Col sm={3} className="my-1">
       <Form.Label htmlFor="inlineFormInputGroupUsername" visuallyHidden>
-       Username
+       Password
       </Form.Label>
       <InputGroup>
         <FormControl id="inlineFormInputGroupUsername" placeholder="Password" />
+      </InputGroup>
+    </Col>
+    <Col sm={3} className="my-1">
+      <Form.Label htmlFor="inlineFormInputGroupUsername" visuallyHidden>
+       Name
+      </Form.Label>
+      <InputGroup>
+        <FormControl id="inlineFormInputGroupUsername" placeholder="Name" />
       </InputGroup>
     </Col>
     

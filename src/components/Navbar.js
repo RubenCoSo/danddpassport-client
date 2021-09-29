@@ -13,7 +13,7 @@ function Navbar() {
         <button>Home</button>
       </Link>
 -
-      {isLoggedIn
+      {/* {isLoggedIn
         ? (<>
             <Link to="/projects">
               <button>Projects</button>
@@ -23,10 +23,10 @@ function Navbar() {
           </>)
         : 
         (<>
-          <Link to="/login"> <button>Logout</button> </Link>
+          <Link to="/login"> <button>logout</button> </Link>
         </>)
       }
-    </nav>
+    </nav> */}
   );
 }
 
