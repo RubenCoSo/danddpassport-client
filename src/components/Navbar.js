@@ -23,8 +23,7 @@ function Navbar() {
           </>)
         : 
         (<>
-          <Link to="/signup"> <button>Signup</button> </Link>
-          <Link to="/login"> <button>Login</button> </Link>
+          <Link to="/login"> <button>Logout</button> </Link>
         </>)
       }
     </nav>

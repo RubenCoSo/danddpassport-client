@@ -107,3 +107,23 @@ nav li {
 .TaskCard {
   background-color: #dfeef9;
 }
+
+.container {
+  padding-top: 50%;
+}
+
+#inlineFormInputGroupUsername {
+  text-align: center;
+}
+
+#inlineFormInputName {
+  text-align: center;
+}
+
+#login {
+  font-size: 25px;
+  width: 150%;
+  color: black;
+  background-color: rgb(245, 69, 38);
+  border-color: ;
+}
