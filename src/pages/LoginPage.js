@@ -26,7 +26,7 @@ function LoginPage(props) {
 
         const token = response.data.authToken;
         logInUser(token);
-        props.history.push("/");
+        props.history.push("/chooserol");
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
