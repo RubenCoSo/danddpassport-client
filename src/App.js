@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/createnewcharacter" component={CreateNewCharacter}/>
         <Route exact path="/chooserol" component={ChooseRolPage}/>
         <Route exact path="/characterinfo" component={CharacterInfo}/>
-        <Route exact path="/createnewcharacter2" component={CreateNewCharacter2}/>
+        <Route exact path="/createnewcharacter2/:id" component={CreateNewCharacter2}/>
 
         
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}

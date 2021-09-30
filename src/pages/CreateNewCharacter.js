@@ -45,7 +45,8 @@ export default function CreateNewCharacter(props) {
           setName("");
           setRace("");
           setCharacterClass("");
-          props.history.push("/createnewcharacter2")
+          return(
+          props.history.push(`/createnewcharacter2/${response.data._id}`))
         
       
           
