@@ -31,10 +31,10 @@ console.log(props.match.params.id)
     e.preventDefault();
    
       
-      const characterId = props.params._id;
+      const characterId = props.match.params.id;
       
 
-      const requestBody = { strength, constitution, dexterity, wisdom, inteligence, charisma };
+      const requestBody = {strength, constitution, dexterity, wisdom, inteligence, charisma, characterId};
   
   
       const storedToken = localStorage.getItem('authToken');
@@ -43,7 +43,7 @@ console.log(props.match.params.id)
     
       axios
         .put(
-          `${API_URL}/newCharacter2`,
+          `${API_URL}/character`,
           requestBody,
           { headers: { Authorization: `Bearer ${storedToken}` } }        
         )
