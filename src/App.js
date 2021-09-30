@@ -17,7 +17,7 @@ import CharacterInfo from "./pages/CharacterInfo";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Navbar />
 
       <Switch>      
@@ -36,9 +36,9 @@ function App() {
         <AnonRoute exact path="/signup" component={SignupPage} />
         <AnonRoute exact path="/login" component={LoginPage} />
       </Switch>
-
+    </>
       
-    </div>
+    
   );
 }
 

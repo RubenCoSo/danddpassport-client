@@ -6,27 +6,32 @@ import { Redirect } from 'react-router-dom';
 const API_URL = process.env.REACT_APP_API_URL
 
 
-export default function ChooseRolPage() {
+export default function ChooseRolPage(props) {
+
+    console.log('props',props)
     const {user} = useContext(AuthContext)
 
     const storedToken = localStorage.getItem('authToken')
 
-    const playerButton=()=>{
-        const _id = `ObjectId("${user._id}")`
+    const playerButton=(e)=>{
+        const _id = user._id
 
-        console.log({_id})
-        axios.put(`${API_URL}/chooserol/player`,{_id},{ headers: { Authorization: `Bearer ${storedToken}` } })
+        const rol = e.target.value
+
+        console.log(e.target)
+        axios.put(`${API_URL}/chooserol/${rol}`,{_id},{ headers: { Authorization: `Bearer ${storedToken}` } })
         .then((returnInfo)=>{
-            return <Redirect to='/playerpage'/>
+            return props.history.push("/playerpage")
         })
+        .catch((err)=> console.log('error',err))
     }
     
     return(
     <Container>
         <Row>
             <Col>
-                <Button onClick = {playerButton} >Player</Button>
-                <Button>Master</Button>
+                <Button onClick = {playerButton} value = {'player'}>Player</Button>
+                <Button onClick = {playerButton} value = {'master'}>Master</Button>
             </Col>
         </Row>
     </Container>
