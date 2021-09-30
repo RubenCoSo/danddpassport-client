@@ -10,7 +10,13 @@ function CharacterInfo() {
         <Card.Body>
           <Card.Title>Information</Card.Title>
           <Card.Text>
-           Aquí las estadisticas del personaje
+          <ul>
+           <li>·Fuerza = 20</li>
+           <li>·Destreza = 20</li>
+           <li>·int= 20</li>
+           <li>·lo que sea= 20</li>
+           </ul>
+
           </Card.Text>
         </Card.Body>
       </Card>

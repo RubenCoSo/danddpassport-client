@@ -21,7 +21,7 @@ function SignupPage(props) {
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     // Create an object representing the request body
-    const requestBody = { email, password, name, rol:"master" };
+    const requestBody = { email, password, name, rol:"master", characters:[], adventures:[] };
 
     // Make an axios request to the API
     // If POST request is successful redirect to login page
@@ -82,7 +82,7 @@ function SignupPage(props) {
         </Form>
         { errorMessage && <p className="error-message">{errorMessage}</p> }
         <p>Already have an account?</p>
-    //  <Link to={"/login"}> Login</Link>
+        <Link to={"/login"}> Login</Link>
       </Col>
     </Row>
   </Container>

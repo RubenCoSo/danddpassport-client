@@ -15,7 +15,7 @@ import axios from "axios";
 const API_URL = process.env.REACT_APP_API_URL;
 
 
-export default function CreateNewCharacter() {
+export default function CreateNewCharacter(props) {
   const [name, setName] = useState("");
   const [race, setRace] = useState("");
   const [characterClass, setCharacterClass] = useState("");
@@ -40,11 +40,12 @@ export default function CreateNewCharacter() {
           requestBody,
           { headers: { Authorization: `Bearer ${storedToken}` } }        
         )
-        .then((response) => {
+        .then((response) => { console.log(response)
      
           setName("");
           setRace("");
           setCharacterClass("");
+          props.history.push("/createnewcharacter2")
         
       
           
@@ -65,7 +66,7 @@ export default function CreateNewCharacter() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 id="inlineFormInputGroup"
-                placeholder="Username"
+                placeholder="Name"
               />
             </InputGroup>
           </Col>
