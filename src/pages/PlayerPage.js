@@ -1,4 +1,4 @@
-import {Container,Row,Col,Form,Button,InputGroup, FormControl, Card} from "react-bootstrap"
+import {Container,Button, Card} from "react-bootstrap"
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import CharacterCard from "../components/CardCharacter";
@@ -11,8 +11,11 @@ import { AuthContext } from "./../context/auth.context";
 function PlayerPage() {
 
   const [characters, setCharacters] = useState([])
-  const userId = user._id;
+
   const { user } = useContext(AuthContext);
+  
+  // const userId = user._id;
+  
 
     return (
   <Container>

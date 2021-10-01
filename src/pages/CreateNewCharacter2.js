@@ -14,12 +14,12 @@ import axios from "axios";
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default function CreateNewCharacter2(props) {
-  const [strength, setStrength] = useState(0);
-  const [constitution, setConstitution] = useState(0);
-  const [dexterity, setDexterity] = useState(0);
-  const [intelligence, setIntelligence] = useState(0);
-  const [wisdom, setWisdom] = useState(0);
-  const [charisma, setCharisma] = useState(0);
+  const [strength, setStrength] = useState();
+  const [constitution, setConstitution] = useState();
+  const [dexterity, setDexterity] = useState();
+  const [intelligence, setIntelligence] = useState();
+  const [wisdom, setWisdom] = useState();
+  const [charisma, setCharisma] = useState();
 
   const [strengthMod, setStrengthMod] = useState(0);
   const [constitutionMod, setConstitutionMod] = useState(0);
@@ -79,7 +79,7 @@ export default function CreateNewCharacter2(props) {
         setTraits([...traits,"Darkvision", "Gnome Cunning"])
         setImage("./images/DragonBorn.jpg")
         break;
-      case "Half-elf":
+      case "Half-Elf":
         const randomStat = Math.floor(Math.random()*5)
         switch (randomStat) {
           case 0:
@@ -106,7 +106,7 @@ export default function CreateNewCharacter2(props) {
         setTraits([...traits,"Darkvision", "Fey Ancestry","Skill versatility"])
         setImage("./images/Half-elf2-5e.jpg")
         break;
-      case "Half-orc":
+      case "Half-Orc":
         setConstitutionMod(1)
         setStrengthMod(2)
         setSpeed(30)
@@ -190,7 +190,7 @@ export default function CreateNewCharacter2(props) {
                 onChange={(e) => setStrength(e.target.value + strengthMod)}
                 id="inlineFormInputGroup"
                 placeholder="Strength"
-                type="number"
+                // type="number"
               />
             </InputGroup>
           </Col>
