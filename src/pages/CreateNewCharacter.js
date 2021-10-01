@@ -34,7 +34,7 @@ export default function CreateNewCharacter(props) {
       });
     });
   }, []);
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 

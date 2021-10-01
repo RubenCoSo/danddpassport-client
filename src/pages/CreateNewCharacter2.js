@@ -15,29 +15,63 @@ import axios from "axios";
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default function CreateNewCharacter2(props) {
-  const [strength, setStrength] = useState();
-  const [constitution, setConstitution] = useState();
-  const [dexterity, setDexterity] = useState();
-  const [inteligence, setInteligence] = useState();
-  const [wisdom, setWisdom] = useState();
-  const [charisma, setCharisma] = useState();
+  const [strength, setStrength] = useState(0);
+  const [constitution, setConstitution] = useState(0);
+  const [dexterity, setDexterity] = useState(0);
+  const [intelligence, setIntelligence] = useState(0);
+  const [wisdom, setWisdom] = useState(0);
+  const [charisma, setCharisma] = useState(0);
 
   const [strengthMod, setStrengthMod] = useState(0);
   const [constitutionMod, setConstitutionMod] = useState(0);
   const [dexterityMod, setDexterityMod] = useState(0);
-  const [inteligenceMod, setInteligenceMod] = useState(0);
+  const [intelligenceMod, setIntelligenceMod] = useState(0);
   const [wisdomMod, setWisdomMod] = useState(0);
   const [charismaMod, setCharismaMod] = useState(0);
+  const [race, setRace] = useState(0);
+  const [speed, setSpeed] =useState(0)
 
   const characterId = props.match.params.id;
   const storedToken = localStorage.getItem('authToken');
   
   useEffect(()=>{
-    axios.get(`${API_URL}/character`,characterId, { headers: { Authorization: `Bearer ${storedToken}` } })
+    console.log(`hola`);
+    axios.get(`${API_URL}/character/${characterId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
     .then((foundCharacter)=>{
-      console.log(foundCharacter)
+      setRace(foundCharacter.data.race)
     })
   },[])
+
+  useEffect(()=>{
+    switch (race) {
+      case "Dragonborn":
+        setStrengthMod(2)
+        setCharismaMod(1)
+        setSpeed(30)
+        break;
+      case "Dwarf":
+        setConstitutionMod(2)
+        setSpeed(25)
+        break;
+      case "Elf":
+        setDexterityMod(2)
+        setSpeed(30)
+        break;
+      case "Gnome":
+        setIntelligenceMod(2)
+        setSpeed(25)
+        break;
+      case "Half-elf":
+        const randomStatHElf =[setStrengthMod(1), setDexterityMod(1), setConstitutionMod(1), setIntelligenceMod(1), setWisdomMod(1)]
+        randomStatHElf[Math.floor(Math.random()*4)]
+        setCharismaMod(2)
+        setSpeed(25)
+        break;
+    
+      default:
+        
+    }
+  },[race])
 
   const handleSubmit = (e) => {
       
@@ -47,7 +81,7 @@ export default function CreateNewCharacter2(props) {
       
       
 
-      const requestBody = {strength, constitution, dexterity, wisdom, inteligence, charisma, characterId};
+      const requestBody = {strength, constitution, dexterity, wisdom, intelligence, charisma, characterId};
   
   
       
@@ -64,7 +98,7 @@ export default function CreateNewCharacter2(props) {
      
           setStrength();
           setConstitution();
-          setInteligence();
+          setIntelligence();
           setDexterity();
           setWisdom();
           setCharisma();
@@ -124,15 +158,15 @@ export default function CreateNewCharacter2(props) {
 
           <Col xs="auto">
             <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
-              Inteligence
+              Intelligence
             </Form.Label>
             <InputGroup className="mb-2">
               <FormControl
-                name="inteligence"
-                value={inteligence}
-                onChange={(e) => setInteligence(e.target.value)}
+                name="intelligence"
+                value={intelligence}
+                onChange={(e) => setIntelligence(e.target.value)}
                 id="inlineFormInputGroup"
-                placeholder="Inteligence"
+                placeholder="Intelligence"
               />
             </InputGroup>
           </Col>
