@@ -11,17 +11,14 @@ function Navbar() {
 
   return (
     <nav>
-      <Link to="/">
-        <button>Home</button>
-      </Link>
-    
--
        {isLoggedIn
         ? (<>
-            <Link to="/projects">
-              <button>Projects</button>
+            <Link to="/chooserol">
+              <button>Choose Rol</button>
             </Link>
+            <Link to="/">
             <button onClick={logOutUser}>Logout</button>
+            </Link>
             <span>{user.name}</span>
           </>)
         : 
