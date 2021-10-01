@@ -1,11 +1,24 @@
 import {Container,Row,Col,Form,Button,InputGroup, FormControl, Card} from "react-bootstrap"
 import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import CharacterCard from "../components/CardCharacter";
+import { AuthContext } from "./../context/auth.context";
+
+
+
 
 
 function PlayerPage() {
+
+  const [characters, setCharacters] = useState([])
+  const userId = user._id;
+  const { user } = useContext(AuthContext);
+
     return (
   <Container>
 <Link to={"/characterInfo"}><Button variant="primary">Info</Button></Link>
+
+<CharacterCard character = {characters}/> 
 
 <Card style={{ width: '18rem' }}>
   <Card.Img variant="top" src="holder.js/100px180" />
