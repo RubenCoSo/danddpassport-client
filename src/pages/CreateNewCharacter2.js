@@ -9,35 +9,48 @@ import {
   
 } from "react-bootstrap";
 import { AuthContext } from "./../context/auth.context";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-
 export default function CreateNewCharacter2(props) {
-  const [strength, setStrength] = useState("");
-  const [constitution, setConstitution] = useState("");
-  const [dexterity, setDexterity] = useState("");
-  const [inteligence, setInteligence] = useState("");
-  const [wisdom, setWisdom] = useState("");
-  const [charisma, setCharisma] = useState("");
-  
-console.log(props.match.params.id)
+  const [strength, setStrength] = useState();
+  const [constitution, setConstitution] = useState();
+  const [dexterity, setDexterity] = useState();
+  const [inteligence, setInteligence] = useState();
+  const [wisdom, setWisdom] = useState();
+  const [charisma, setCharisma] = useState();
 
-  const {user} = useContext(AuthContext);
+  const [strengthMod, setStrengthMod] = useState(0);
+  const [constitutionMod, setConstitutionMod] = useState(0);
+  const [dexterityMod, setDexterityMod] = useState(0);
+  const [inteligenceMod, setInteligenceMod] = useState(0);
+  const [wisdomMod, setWisdomMod] = useState(0);
+  const [charismaMod, setCharismaMod] = useState(0);
+
+  const characterId = props.match.params.id;
+  const storedToken = localStorage.getItem('authToken');
+  
+  useEffect(()=>{
+    axios.get(`${API_URL}/character`,characterId, { headers: { Authorization: `Bearer ${storedToken}` } })
+    .then((foundCharacter)=>{
+      console.log(foundCharacter)
+    })
+  },[])
+
   const handleSubmit = (e) => {
       
     e.preventDefault();
    
       
-      const characterId = props.match.params.id;
+      
       
 
       const requestBody = {strength, constitution, dexterity, wisdom, inteligence, charisma, characterId};
   
   
-      const storedToken = localStorage.getItem('authToken');
+      
      
 
     
@@ -49,12 +62,12 @@ console.log(props.match.params.id)
         )
         .then((response) => {
      
-          setStrength("");
-          setConstitution("");
-          setInteligence("");
-          setDexterity("");
-          setWisdom("");
-          setCharisma("");
+          setStrength();
+          setConstitution();
+          setInteligence();
+          setDexterity();
+          setWisdom();
+          setCharisma();
         
       
           
