@@ -107,6 +107,7 @@ export default function CreateNewCharacter2(props) {
         setImage("./images/Half-elf2-5e.jpg")
         break;
       case "Half-Orc":
+        console.log(`holaaa`)
         setConstitutionMod(1)
         setStrengthMod(2)
         setSpeed(30)
@@ -187,7 +188,7 @@ export default function CreateNewCharacter2(props) {
               <FormControl
                 name="strength"
                 value={strength}
-                onChange={(e) => setStrength(e.target.value + strengthMod)}
+                onChange={(e) => setStrength(Number(e.target.value) + strengthMod)}
                 id="inlineFormInputGroup"
                 placeholder="Strength"
                 // type="number"
@@ -275,6 +276,7 @@ export default function CreateNewCharacter2(props) {
             <Button type="submit" className="mb-2">
               Submit
             </Button>
+            
           </Col>
         </Row>
       </Form>

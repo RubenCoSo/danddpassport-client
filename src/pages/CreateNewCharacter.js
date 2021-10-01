@@ -54,10 +54,15 @@ export default function CreateNewCharacter(props) {
         setName("");
         setRace("");
         setCharacterClass("");
-        return props.history.push(`/createnewcharacter2/${response.data._id}`);
+        props.history.push(`/createnewcharacter2/${response.data._id}`)
+        
       })
       .catch((error) => console.log(error));
+
+      
   };
+
+
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -95,16 +100,6 @@ export default function CreateNewCharacter(props) {
                 {isLoading ? null : races.map((race) => {
                   return <option value={race.name}>{race.name}</option>;
                 })}
-                {/*       <option value="Dragonborn">Dragonborn</option>
-        <option value="Dwarf">Dwarf</option>
-        <option value="Elf">Elf</option>
-        <option value="Gnome">Gnome</option>
-        <option value="Half-Helf">Half-Helf</option>
-        <option value="Halfing">Halfing</option>
-        <option value="Half-Orc">Half-Orc</option>
-        <option value="Human">Human</option>
-        <option value="Tiefling">Tiefling</option>
-        <option value="Orc">Orc</option> */}
               </Form.Select>
             </Col>
           </Row>
@@ -126,19 +121,6 @@ export default function CreateNewCharacter(props) {
             { isLoading ? null : classes.map((classes) => {
               return <option value={classes.name}>{classes.name}</option>;
             })}
-            {/*  <option value="Barbarian">Barbarian</option>
-        <option value="Bard">Bard</option>
-        <option value="Claric">Cleric</option>
-        <option value="Drud">Druid</option>
-        <option value="Figther">Figther</option>
-        <option value="Monk">Monk</option>
-        <option value="Paladin">Paladin</option>
-        <option value="Ranger">Ranger</option>
-        <option value="Rogue">Rogue</option>
-        <option value="Sorcerer">Sorcerer</option>
-        <option value="Warlock">Warlock</option>
-        <option value="Wizard">Wizard</option>
-        <option value="Artificer">Artificer</option> */}
           </Form.Select>
         </Col>
 
