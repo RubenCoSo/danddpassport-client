@@ -76,6 +76,7 @@ console.log(props.match.params.id)
                 onChange={(e) => setStrength(e.target.value)}
                 id="inlineFormInputGroup"
                 placeholder="Strength"
+                type="number"
               />
             </InputGroup>
           </Col>
