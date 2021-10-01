@@ -1,6 +1,8 @@
 body {
   margin: 0;
-  background-image: url(../public/images/backgrounds_compressed_grande.jpg);
+  background-image: url(../src/pages/images/backgrounds_compressed_grande.jpg);
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
 }
 
 a {
@@ -137,10 +139,12 @@ h1 {
   text-shadow: 2px 2px 0 #aaa, 12px 12px 8px rgb(245, 69, 38);
   text-align: center;
   font-size: 30px;
+  padding-top: 25%;
 }
 
 h2 {
-  text-align: top;
+  text-align: center;
   font-size: 50px;
   text-shadow: 2px 2px 0 #aaa, 12px 12px 8px rgb(245, 69, 38);
+  padding-top: 25%;
 }
