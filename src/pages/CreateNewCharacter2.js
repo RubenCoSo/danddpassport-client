@@ -203,7 +203,7 @@ export default function CreateNewCharacter2(props) {
               <FormControl
                 name="constitution"
                 value={constitution}
-                onChange={(e) => setConstitution(e.target.value + constitutionMod)}
+                onChange={(e) => setConstitution(Number(e.target.value) + constitutionMod)}
                 id="inlineFormInputGroup"
                 placeholder="Constitution"
               />
@@ -217,7 +217,7 @@ export default function CreateNewCharacter2(props) {
               <FormControl
                 name="dexterity"
                 value={dexterity}
-                onChange={(e) => setDexterity(e.target.value + dexterityMod)}
+                onChange={(e) => setDexterity(Number(e.target.value) + dexterityMod)}
                 id="inlineFormInputGroup"
                 placeholder="Dexterity"
               />
@@ -232,7 +232,7 @@ export default function CreateNewCharacter2(props) {
               <FormControl
                 name="intelligence"
                 value={intelligence}
-                onChange={(e) => setIntelligence(e.target.value +intelligenceMod)}
+                onChange={(e) => setIntelligence(Number(e.target.value) +intelligenceMod)}
                 id="inlineFormInputGroup"
                 placeholder="Intelligence"
               />
@@ -247,7 +247,7 @@ export default function CreateNewCharacter2(props) {
               <FormControl
                 name="wisdom"
                 value={wisdom}
-                onChange={(e) => setWisdom(e.target.value + wisdomMod)}
+                onChange={(e) => setWisdom(Number(e.target.value) + wisdomMod)}
                 id="inlineFormInputGroup"
                 placeholder="Wisdom"
               />
@@ -262,7 +262,7 @@ export default function CreateNewCharacter2(props) {
               <FormControl
                 name="charisma"
                 value={charisma}
-                onChange={(e) => setCharisma(e.target.value + charismaMod)}
+                onChange={(e) => setCharisma(Number(e.target.value) + charismaMod)}
                 id="inlineFormInputGroup"
                 placeholder="Charisma"
               />
