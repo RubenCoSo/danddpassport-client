@@ -65,13 +65,13 @@ export default function CreateNewCharacter(props) {
 
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="formChar">
       <Row className="align-items-center">
         <Col xs="auto">
-          <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
-            Name
+          <Form.Label htmlFor="inlineFormInputGroup">
+          <b>Name</b>
           </Form.Label>
-          <InputGroup className="mb-2">
+          <InputGroup className="mb-2" aria-label="Toggle navigation">
             <FormControl
               name="name"
               value={name}
@@ -87,9 +87,9 @@ export default function CreateNewCharacter(props) {
               <Form.Label
                 className="me-sm-2"
                 htmlFor="inlineFormCustomSelect"
-                visuallyHidden
+                
               >
-                Preference
+               <b> Race </b>
               </Form.Label>
               <Form.Select
                 className="me-sm-2"
@@ -108,9 +108,9 @@ export default function CreateNewCharacter(props) {
           <Form.Label
             className="me-sm-2"
             htmlFor="inlineFormCustomSelect"
-            visuallyHidden
+            
           >
-            Preference
+           <b> Class</b>
           </Form.Label>
           <Form.Select
             className="me-sm-2"
@@ -125,7 +125,7 @@ export default function CreateNewCharacter(props) {
         </Col>
 
         <Col xs="auto">
-          <Button type="submit" className="mb-2">
+          <Button type="submit" className="mb-2" id="sub">
             Submit
           </Button>
         </Col>
