@@ -19,7 +19,7 @@ export default function ChooseRolPage(props) {
         const rol = e.target.value
 
         console.log(e.target)
-        axios.put(`${API_URL}/chooserol/${rol}`,{_id},{ headers: { Authorization: `Bearer ${storedToken}` } })
+        axios.put(`${API_URL}/user/${rol}`,{_id},{ headers: { Authorization: `Bearer ${storedToken}` } })
         .then((returnInfo)=>{
             return props.history.push("/playerpage")
         })

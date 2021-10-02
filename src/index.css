@@ -177,3 +177,12 @@ b {
   margin-right: 5vh;
   background-color: rgba(255, 235, 205, 0.349);
 }
+
+.characterImage {
+  width: 70% !important;
+}
+
+.card {
+  width: 80%;
+  align-items: center;
+}

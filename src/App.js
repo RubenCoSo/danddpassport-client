@@ -15,6 +15,7 @@ import CreateNewCharacter from "./pages/CreateNewCharacter"
 import ChooseRolPage from "./pages/ChooseRolPage";
 import CharacterInfo from "./pages/CharacterInfo";
 import CreateNewCharacter2 from "./pages/CreateNewCharacter2"
+import CreateNewCharacter3 from "./pages/CreateNewCharacter3";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/chooserol" component={ChooseRolPage}/>
         <Route exact path="/characterinfo" component={CharacterInfo}/>
         <Route exact path="/createnewcharacter2/:id" component={CreateNewCharacter2}/>
+        <Route exact path="/createNewCharacter3/:id/:characterClass" component={CreateNewCharacter3}/>
 
         
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}

@@ -10,6 +10,17 @@ import {
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import dragonbornImg from "./images/DragonBorn.jpg"
+import dwarfImg from "./images/Dwarves.jpg"
+import gnomeImg from "./images/gnome.jpg"
+import elfImg from "./images/Elves.jpg"
+import halfElfImg from "./images/Half-elf2-5e.jpg"
+import halfOrcImg from "./images/orca.jpg"
+import halflingImg from "./images/Halfling.jpg"
+import humanImg from "./images/humano.jpg"
+import tieflingImg  from "./images/Tiefling.jpg"
+ 
+
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -32,6 +43,7 @@ export default function CreateNewCharacter2(props) {
   const [languages, setLanguages] =useState([])
   const [traits, setTraits] =useState([])
   const [image, setImage] =useState("")
+  const [characterClass, setCharacterClass] = useState()
 
 
   const characterId = props.match.params.id;
@@ -42,6 +54,7 @@ export default function CreateNewCharacter2(props) {
     axios.get(`${API_URL}/character/${characterId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
     .then((foundCharacter)=>{
       setRace(foundCharacter.data.race)
+      setCharacterClass(foundCharacter.data.class)
     })
   },[])
 
@@ -53,7 +66,7 @@ export default function CreateNewCharacter2(props) {
         setStrengthMod(2)
         setCharismaMod(1)
         setSpeed(30)
-        setImage("./images/DragonBorn.jpg")
+        setImage(dragonbornImg)
         setSpeed(30)
         setLanguages([...languages, "Common", "Draconic"])
         setTraits([...traits,"Breath Weapon", "Draconic Ancestry","Damage Resistance"])
@@ -63,21 +76,21 @@ export default function CreateNewCharacter2(props) {
         setSpeed(25)
         setLanguages([...languages, "Common", "Dwarvish"])
         setTraits([...traits,"Darkvision", "Dwarven Resilience","Stonecunning", "Dwarven Combat Training", "Tool Proficiency"])
-        setImage("./images/gnome.jpg")
+        setImage(dwarfImg)
         break;
       case "Elf":
         setDexterityMod(2)
         setSpeed(30)
         setLanguages([...languages, "Common", "Elvish"])
         setTraits([...traits,"Darkvision", "Fey Ancestry","Trance"])
-        setImage("./images/Elves.jpg")
+        setImage(elfImg)
         break;
       case "Gnome":
         setIntelligenceMod(2)
         setSpeed(25)
         setLanguages([...languages, "Common", "Gnomish"])
         setTraits([...traits,"Darkvision", "Gnome Cunning"])
-        setImage("./images/DragonBorn.jpg")
+        setImage(gnomeImg)
         break;
       case "Half-Elf":
         const randomStat = Math.floor(Math.random()*5)
@@ -104,7 +117,7 @@ export default function CreateNewCharacter2(props) {
         setSpeed(30)
         setLanguages([...languages, "Common", "Elvish", "Sylvan"])
         setTraits([...traits,"Darkvision", "Fey Ancestry","Skill versatility"])
-        setImage("./images/Half-elf2-5e.jpg")
+        setImage(halfElfImg)
         break;
       case "Half-Orc":
         console.log(`holaaa`)
@@ -113,14 +126,14 @@ export default function CreateNewCharacter2(props) {
         setSpeed(30)
         setLanguages([...languages, "Common", "Orc"])
         setTraits([...traits,"Darkvision", "Savage attacks","Relenteless endurance"])
-        setImage("./images/orca.jpg")
+        setImage(halfOrcImg)
       break;
       case "Halfling":
         setDexterityMod(2)
         setSpeed(25)
         setLanguages([...languages, "Common", "Halfling"])
         setTraits([...traits,"Brave", "Halfling Nimbleness","Lucky"])
-        setImage("./images/Halfling.jpg")
+        setImage(halflingImg)
       break;
       case "Human":
         setDexterityMod(1)
@@ -131,7 +144,7 @@ export default function CreateNewCharacter2(props) {
         setWisdom(1)
         setSpeed(30)
         setLanguages([...languages, "Common", "Elvish"])
-        setImage("./images/humano.jpg")
+        setImage(humanImg)
         
       break;
       case "Tiefling":
@@ -140,7 +153,7 @@ export default function CreateNewCharacter2(props) {
         setSpeed(30)
         setLanguages([...languages, "Common", "Infernal"])
         setTraits([...traits,"Darkvision", "Hellish Resistance","Infernal Legacy"])
-        setImage("./images/Tiefling.jpg")
+        setImage(tieflingImg)
       break;
     
       default:
@@ -172,6 +185,7 @@ export default function CreateNewCharacter2(props) {
           setSpeed(0)
           setLanguages([])
           setTraits([])
+          props.history.push(`/createNewCharacter3/${characterId}/${characterClass}`)
 
         })
         .catch((error) => console.log(error));
