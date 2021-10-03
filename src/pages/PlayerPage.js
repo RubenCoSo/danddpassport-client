@@ -33,9 +33,6 @@ function PlayerPage() {
 
 return (
   <Container>
-    <Link to={"/characterInfo"}><Button variant="primary">Info</Button></Link>
-
-    
     <CardGroup>
     {characters.map((character)=>{
       return (

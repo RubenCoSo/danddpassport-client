@@ -1,28 +1,63 @@
-import {Container,Row,Col,Form,Button,InputGroup, FormControl, Card} from "react-bootstrap"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import {Container,Row,Col,Form,Button,InputGroup, FormControl, Image} from "react-bootstrap"
 import { Link } from "react-router-dom";
 
-function CharacterInfo() {
+const API_URL = process.env.REACT_APP_API_URL;
+
+function CharacterInfo(props) {
+
+  const [character, setCharacter] = useState()
+  const [isLoading, setIsLoading] = useState(true)
+
+  const characterId = props.match.params.id;
+  console.log(characterId);
+  const storedToken = localStorage.getItem('authToken');
+
+  useEffect(()=>{
+    axios.get(`${API_URL}/character/${characterId}`,{ headers: { Authorization: `Bearer ${storedToken}` } })
+    .then((response)=>{
+      console.log(`character`,response.data);
+      setCharacter(response.data)
+      setIsLoading(false)
+    })
+    .catch((err)=>console.log(err))
+  },[])
+
+  // return null
+  
     return (
-        <Container>
-        <p>character info xD</p>
-        <Card border="primary" style={{ width: '18rem' }}>
-        <Card.Header>nombre del personaje</Card.Header>
-        <Card.Body>
-          <Card.Title>Information</Card.Title>
-          <Card.Text>
-          <ul>
-           <li>·Fuerza = 20</li>
-           <li>·Destreza = 20</li>
-           <li>·int= 20</li>
-           <li>·lo que sea= 20</li>
-           </ul>
-
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <br />
-
-</Container>
+      <Container>
+        <Row>
+          <Col>
+            <h1>Character info</h1>
+          </Col>
+        </Row>
+        <Row >
+          <Col sm={1} md={1}>
+            <Image src={isLoading ? null : character.image}></Image>
+          </Col>
+          <Col sm={1} md={1}>
+            <h2> Name: {isLoading ? null : character.characterName}</h2>
+            <h4> Race: {isLoading ? null : character.race}</h4>
+            <h4> Class: {isLoading ? null : character.class}</h4>
+          </Col>
+          <Col sm={1} md={1}>
+            <h5>Stats</h5>
+            <p>Constitution : {isLoading ? null : character.stats.con}</p>
+            <br/>
+            <p>Constitution : {isLoading ? null : character.stats.con}</p>
+            <br/>
+            <p>Constitution : {isLoading ? null : character.stats.con}</p>
+            <br/>
+            <p>Constitution : {isLoading ? null : character.stats.con}</p>
+            <br/>
+            <p>Constitution : {isLoading ? null : character.stats.con}</p>
+            <br/>
+            <p>Constitution : {isLoading ? null : character.stats.con}</p>
+          </Col>
+        </Row>
+      </Container>
         )
     }
 
