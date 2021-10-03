@@ -33,7 +33,7 @@ function CharacterInfo(props) {
             <h1>Character info</h1>
           </Col>
         </Row>
-        <Row >
+        
           <Col sm={1} md={1}>
             <Image src={isLoading ? null : character.image}></Image>
           </Col>
@@ -42,19 +42,28 @@ function CharacterInfo(props) {
             <h4> Race: {isLoading ? null : character.race}</h4>
             <h4> Class: {isLoading ? null : character.class}</h4>
           </Col>
+        <Row >
           <Col sm={1} md={1}>
             <h5>Stats</h5>
-            <p>Constitution : {isLoading ? null : character.stats.con}</p>
+            <p>Strength : {isLoading ? null : character.stats.str}</p>
+            <br/>
+            <p>Dexterity : {isLoading ? null : character.stats.dex}</p>
             <br/>
             <p>Constitution : {isLoading ? null : character.stats.con}</p>
             <br/>
-            <p>Constitution : {isLoading ? null : character.stats.con}</p>
+            <p>Intelligence : {isLoading ? null : character.stats.int}</p>
             <br/>
-            <p>Constitution : {isLoading ? null : character.stats.con}</p>
+            <p>Wisdom : {isLoading ? null : character.stats.wis}</p>
             <br/>
-            <p>Constitution : {isLoading ? null : character.stats.con}</p>
-            <br/>
-            <p>Constitution : {isLoading ? null : character.stats.con}</p>
+            <p>Charisma : {isLoading ? null : character.stats.cha}</p>
+          </Col>
+        </Row>
+        <Row >
+          <Col sm={1} md={1}>
+            <h5>Proficiencies</h5>
+            {isLoading ? null : character.basicSkills.map((skill)=>{
+              return <Link><p>{skill}</p></Link>
+            })}
           </Col>
         </Row>
       </Container>
