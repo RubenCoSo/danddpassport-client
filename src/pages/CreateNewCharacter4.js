@@ -42,7 +42,8 @@ export default function CreateNewCharacter3(props) {
         setClassInfo(classInfo)
         setChooseCharacterEquipment(classInfo.data.starting_equipment_options)
         classInfo.data.starting_equipment.forEach((equipment)=>{
-          startingEquipmentArr.push(equipment.name)
+          console.log(`equipment`,equipment);
+          startingEquipmentArr.push(equipment.equipment.name)
         })
         setDiceHits(classInfo.data.hit_die)
         classInfo.data.saving_throws.forEach((saving) => {
