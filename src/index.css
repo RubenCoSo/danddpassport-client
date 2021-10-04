@@ -142,6 +142,7 @@ nav Button {
   font-size: 1.9vh !important;
   border: 2px solid black !important;
   background-color: rgb(211, 87, 65) !important;
+  border-radius: 4px;
 }
 
 h1 {
