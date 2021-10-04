@@ -23,6 +23,8 @@ export default function CreateNewCharacter3(props) {
   const [chooseCharacterSkills, setChooseCharacterSkills] = useState()
   const [diceHits, setDiceHits] =useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [choosedSkills, setChoosedSkills] = useState()
+  const [choosedBasicSkills, setChoosedBasicSkills] = useState()
 
 
   const characterId = props.match.params.id;
@@ -53,11 +55,11 @@ export default function CreateNewCharacter3(props) {
 
     setSkillsPerClass(skiPerClass)
 
-    const requestBody = {diceHits, skillsPerClass};
+    const requestBody = {diceHits, skillsPerClass,choosedSkills, choosedBasicSkills};
 
     axios
       .put(
-        `${API_URL}/character/skillParameters`,
+        `${API_URL}/character/skills`,
         requestBody,
         { headers: { Authorization: `Bearer ${storedToken}` } }        
       )
@@ -76,7 +78,13 @@ export default function CreateNewCharacter3(props) {
             {isLoading ? null : chooseCharacterSkills.map((choose)=>{
               return (
                 <Col>
-                  <ChooseSkills proficiencies={choose.from}  allowedCheck={choose.choose}  characterId ={characterId}/>
+                  <ChooseSkills 
+                  proficiencies={choose.from}  
+                  allowedCheck={choose.choose}  
+                  characterId ={characterId}
+                  setChoosedSkills = {setChoosedSkills}
+                  setChoosedBasicSkills = {setChoosedBasicSkills}
+                  />
                 </Col>
               )
             })}

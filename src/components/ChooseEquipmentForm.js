@@ -59,36 +59,38 @@ export default function ChooseEquipment(props){
     console.log(props.equipment)
     
 
-    return null
+    // return null
 
 
-    // return (
-    //     <Form onSubmit={handleSubmit} className="formChar">
-    //     <Row>
-    //     <h1>Choose {props.allowedCheck} Equipment</h1>
-    //     <Col>
-    //     {props.equipment.map((equipmentOptions) => {
-    //       return (
-    //         <div key={equipmentOptions.equipment.name} className="mb-3">
-    //             <Form.Check 
-    //             type= "checkbox"
-    //             id={equipmentOptions.equipment.name}
-    //             label={equipmentOptions.equipment.name}
-    //             value={equipmentOptions.equipment.name}
-    //             onChange={handleSelectedCheck}
-    //             disabled={disabledChecks}
-    //             />
-    //         </div>)
-    //     })}
-    //     </Col>
-    //     <Col>
-    //     <Button type="submit" className="mb-2" id="sub" disabled={disabledButton}>
-    //         Submit
-    //     </Button>
-    //     </Col>
-    //     </Row>
-    //   </Form>
-    //   )
+    return (
+        <Form onSubmit={handleSubmit} className="formChar">
+        <Row>
+        <h1>Choose {props.allowedCheck} Equipment</h1>
+        <Col>
+        {props.equipment.map((equipmentOptions) => {
+
+            
+          return (equipmentOptions.equipment ? 
+            
+            
+            <div key={equipmentOptions.equipment?.name} className="mb-3">
+                <Form.Check 
+                type= "checkbox"
+                id={equipmentOptions.equipment?.name}
+                label={equipmentOptions.equipment?.name}
+                value={equipmentOptions.equipment?.name}
+                onChange={handleSelectedCheck}
+                disabled={disabledChecks}
+                />
+            </div>
+            : null)
+        })}
+
+
+        </Col>
+        </Row>
+      </Form>
+      )
     
 }
 
