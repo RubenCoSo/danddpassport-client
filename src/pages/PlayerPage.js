@@ -43,6 +43,11 @@ function getCharacters(){
 
 return (
   <Container>
+  <div className="mb-2">
+    <Link to={"/CreateNewCharacter"}><Button variant="primary" size="lg">
+          New Character
+        </Button>{' '}</Link>
+        </div>
     <CardGroup>
     {characters.map((character)=>{
       return (
@@ -52,11 +57,7 @@ return (
     })}
     </CardGroup>
 
-    <div className="mb-2">
-    <Link to={"/CreateNewCharacter"}><Button variant="primary" size="lg">
-          New Character
-        </Button>{' '}</Link>
-        </div>
+    
   </Container>
 
 
