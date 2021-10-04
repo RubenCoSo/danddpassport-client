@@ -119,7 +119,7 @@ export default function CreateNewCharacter(props) {
           >
             <option value="0">Choose...</option>
             { isLoading ? null : classes.map((classes) => {
-              return <option value={classes.name}>{classes.name}</option>;
+              return <option key={classes.name} value={classes.name}>{classes.name}</option>;
             })}
           </Form.Select>
         </Col>

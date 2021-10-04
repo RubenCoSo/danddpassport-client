@@ -57,7 +57,14 @@ export default function ChooseEquipment(props){
     };
 
     console.log(props.equipment)
-    
+    props.equipment.forEach((option)=>{
+        if(!option.name){
+            if(option[0].equipment.name.length>0){
+                option.name = option[0].equipment.name
+            }  
+            
+        }
+    })
 
     // return null
 

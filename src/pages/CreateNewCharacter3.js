@@ -55,7 +55,11 @@ export default function CreateNewCharacter3(props) {
 
     setSkillsPerClass(skiPerClass)
 
-    const requestBody = {diceHits, skillsPerClass,choosedSkills, choosedBasicSkills};
+    console.log(`skill per class`, skillsPerClass);
+    console.log(`choosedSkills`,choosedSkills);
+    console.log(`choosedBasicSkills`,choosedBasicSkills);
+
+    const requestBody = {diceHits, skillsPerClass,choosedSkills, choosedBasicSkills,characterId};
 
     axios
       .put(
@@ -64,7 +68,7 @@ export default function CreateNewCharacter3(props) {
         { headers: { Authorization: `Bearer ${storedToken}` } }        
       )
       .then((response) => {
-        props.history.push(`createNewCharacter4/${characterId}/${characterClass}`)
+        props.history.push(`/createNewCharacter4/${characterId}/${characterClass}`)
 
       })
       .catch((error) => console.log(error));

@@ -11,14 +11,8 @@ let selSkiArr = []
 
 export default function ChooseSkills(props){
     const [checkCount, setCheckCount] = useState(0)
-    // const [selectedBasicSkills, setSelectedBasicSkills] = useState([])
-    // const [selectedSkills, setSelectedSkills] = useState([])
-
-
-   
 
     const handleSelectedCheck=(e)=>{
-        console.log(e.target.value)
         setCheckCount(checkCount+1)
 
         let isSkillInclude =e.target.value.includes('Skill')
@@ -32,15 +26,11 @@ export default function ChooseSkills(props){
         }else{
 
             selSkiArr = [...selSkiArr,e.target.value]
-
-            console.log(`skills`, selSkiArr)
         }
 
 
         props.setChoosedBasicSkills(selBasSkiArr)
         props.setChoosedSkills(selSkiArr)
-        // let isCheckDisabled = checkCount===props.allowedCheck ? true : false
-        // setDisabledChecks(isCheckDisabled)
     }
 
     return (
