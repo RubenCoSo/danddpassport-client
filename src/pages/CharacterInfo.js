@@ -27,7 +27,7 @@ function CharacterInfo(props) {
   // return null
   
     return (
-      <Container>
+      <Container class="info">
         <Row>
           <Col>
             <h1>Character info</h1>
@@ -35,7 +35,7 @@ function CharacterInfo(props) {
         </Row>
         
           <Col sm={1} md={1}>
-            <Image src={isLoading ? null : character.image}></Image>
+            <Image src={isLoading ? null : character.image} id="profileImage"></Image>
           </Col>
           <Col sm={1} md={1}>
             <h2> Name: {isLoading ? null : character.characterName}</h2>
@@ -43,8 +43,10 @@ function CharacterInfo(props) {
             <h4> Class: {isLoading ? null : character.class}</h4>
           </Col>
         <Row >
+        
           <Col sm={1} md={1}>
-            <h5>Stats</h5>
+            <h5> <u>Stats </u> </h5>
+            <div class="stats">
             <p>Strength : {isLoading ? null : character.stats.str}</p>
             <br/>
             <p>Dexterity : {isLoading ? null : character.stats.dex}</p>
@@ -56,14 +58,17 @@ function CharacterInfo(props) {
             <p>Wisdom : {isLoading ? null : character.stats.wis}</p>
             <br/>
             <p>Charisma : {isLoading ? null : character.stats.cha}</p>
+            </div>
           </Col>
         </Row>
         <Row >
           <Col sm={1} md={1}>
-            <h5>Proficiencies</h5>
+            <h5> <u>Proficiencies</u></h5>
+            <div class="proficiencies">
             {isLoading ? null : character.basicSkills.map((skill)=>{
-              return <Link><p>{skill}</p></Link>
-            })}
+              return <Link><p class="linkProfi">{skill}</p></Link>
+              })}
+            </div>
           </Col>
         </Row>
       </Container>

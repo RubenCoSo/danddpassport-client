@@ -244,3 +244,44 @@ button.btn.btn-primary {
 .Link {
   text-decoration: none;
 }
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.info.h1,
+h2,
+h3,
+h4,
+h5 {
+  display: flex;
+  justify-content: center;
+  font-weight: bold !important;
+  font-size: 4vh !important;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  padding-left: 17vh;
+  font-size: 3vh;
+  font-weight: bold;
+  border: 2px solid black;
+  background-color: rgba(255, 235, 205, 0.514);
+}
+
+#profileImage {
+  display: flex;
+  margin-left: 10vh;
+}
+
+.proficiencies {
+  display: flex;
+  flex-direction: column;
+  padding-left: 17vh;
+  font-size: 3vh;
+  font-weight: bold;
+  border: 2px solid black;
+  background-color: rgba(255, 235, 205, 0.514);
+}
