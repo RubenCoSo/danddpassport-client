@@ -25,8 +25,6 @@ export default function ChooseSkills(props){
     const handleSelectedCheck=(e)=>{
         console.log(e.target.value)
         setCheckCount(checkCount+1)
-        let isCheckDisabled = checkCount===props.allowedCheck ? true : false
-        setDisabledChecks(isCheckDisabled)
 
         let isSkillInclude =e.target.value.includes('Skill')
         
@@ -42,7 +40,8 @@ export default function ChooseSkills(props){
 
             console.log(`skills`, `${selSkiArr}`)
         }
-        
+        // let isCheckDisabled = checkCount===props.allowedCheck ? true : false
+        // setDisabledChecks(isCheckDisabled)
     }
 
 
@@ -88,7 +87,7 @@ export default function ChooseSkills(props){
               label={proficiency.name}
               value={proficiency.name}
               onChange={handleSelectedCheck}
-              disabled={disabledChecks}
+              disabled={checkCount===props.allowedCheck ? true : false}
             />
           </div>
         ))}
