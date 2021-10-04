@@ -66,7 +66,7 @@ export default function CreateNewCharacter(props) {
 
   return (
     <Form onSubmit={handleSubmit} className="formChar">
-      <Row className="align-items-center">
+      <Row className="align-items-center" id="loginForm">
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInputGroup">
           <b>Name</b>

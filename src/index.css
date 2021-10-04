@@ -8,6 +8,7 @@ body {
 a {
   list-style: none;
   color: black;
+  text-decoration: none !important;
 }
 
 button,
@@ -238,4 +239,8 @@ button.btn.btn-primary {
 
 #imageNav {
   width: 25vh;
+}
+
+.Link {
+  text-decoration: none;
 }
