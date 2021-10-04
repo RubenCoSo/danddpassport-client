@@ -17,6 +17,9 @@ import React from "react";
 const API_URL = process.env.REACT_APP_API_URL;
 const DNDAPI = "https://www.dnd5eapi.co/api/";
 
+let savingThrowsArr = []
+let startingEquipmentArr = []
+
 
 export default function CreateNewCharacter3(props) {
   const [classInfo, setClassInfo] = useState()
@@ -25,6 +28,8 @@ export default function CreateNewCharacter3(props) {
   const [isLoading, setIsLoading] = useState(true)
   const [hitDiceThrow, setHitDiceThrow] = useState(0)
   const [diceHits, setDiceHits] =useState(0)
+  const [choosedEquipment, setChoosedEquipment] = useState()
+  const [savingThrows, setSavingThrows] = useState()
 
 
   const characterId = props.match.params.id;
@@ -34,12 +39,18 @@ export default function CreateNewCharacter3(props) {
   useEffect(()=>{
       axios.get(`${DNDAPI}/classes/${characterClass}`)
       .then((classInfo)=>{
-        console.log(`classInfo`,classInfo)
         setClassInfo(classInfo)
-        setEquipmentPerClass(classInfo.data.starting_equipment)
         setChooseCharacterEquipment(classInfo.data.starting_equipment_options)
-        setIsLoading(false)
+        classInfo.data.starting_equipment.forEach((equipment)=>{
+          startingEquipmentArr.push(equipment.name)
+        })
         setDiceHits(classInfo.data.hit_die)
+        classInfo.data.saving_throws.forEach((saving) => {
+          savingThrowsArr.push(saving.name)
+        });
+        setEquipmentPerClass(startingEquipmentArr)
+        setSavingThrows(savingThrowsArr)
+        setIsLoading(false)
       })
   },[])
 
@@ -48,16 +59,16 @@ export default function CreateNewCharacter3(props) {
       
     e.preventDefault();
 
-      const requestBody = {equipmentPerClass, hitDiceThrow, characterId};
+      const requestBody = {equipmentPerClass, hitDiceThrow, choosedEquipment, savingThrows, characterId};
 
       axios
         .put(
-          `${API_URL}/character/equipmentParameters`,
+          `${API_URL}/character/equipment`,
           requestBody,
           { headers: { Authorization: `Bearer ${storedToken}` } }        
         )
         .then((response) => {
-     
+          props.history.push("/playerpage")
 
         })
         .catch((error) => console.log(error));
@@ -87,7 +98,12 @@ export default function CreateNewCharacter3(props) {
               {isLoading ? null : chooseCharacterEquipment.map((choose)=>{
                 return (
                   <Col>
-                    <ChooseEquipment equipment={choose.from}  allowedCheck={choose.choose}  characterId ={characterId}/>
+                    <ChooseEquipment 
+                    equipment={choose.from}  
+                    allowedCheck={choose.choose}  
+                    characterId ={characterId}
+                    setChoosedEquipment = {setChoosedEquipment}
+                    />
                   </Col>
                 )
               })}
