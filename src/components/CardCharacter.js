@@ -7,7 +7,7 @@ function CharacterCard(props){
  
 
 return(
-    <Card className="card">
+    <Card className="characterCard">
         <Card.Img variant="top" src={props.character.image} alt={props.character.race} className="characterImage"/>
         <Card.Body>
         <Card.Title>{props.character.characterName}</Card.Title>
@@ -18,7 +18,9 @@ return(
         </Card.Text>
         </Card.Body>
         <Card.Footer>
-            <Link to={`/characterInfo/${props.character._id}`}><Button>Choose Character</Button></Link>
+            <Link to={`/characterInfo/${props.character._id}`} id="link"><Button class="btnCard">Choose Character</Button></Link>
+            <Link to={`/characterInfo/${props.character._id}`}><Button class="btnCard">Edit</Button></Link>
+            <Link to={`/characterInfo/${props.character._id}`}><Button class="btnCard">Delete</Button></Link>
         </Card.Footer>
     </Card>
     )}

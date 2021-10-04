@@ -1,4 +1,6 @@
 import { Container } from "react-bootstrap";
+import logo from "./images/LOGO3.png"
+import {Image} from "react-bootstrap";
 
 function HomePage() {
   return (
@@ -8,6 +10,7 @@ function HomePage() {
         id="homemessage"
       >
         <div class="content">
+        <Image src={logo} alt="logo" id="image"></Image>
           <h2 class="card-title">Welcome adventurous</h2>
           <h1 class="card-subtitle">
             May your days be long, and your hardships few

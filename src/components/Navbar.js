@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";                       // <== IMPORT 
 import { AuthContext } from "./../context/auth.context";  // <== IMPORT
+import {Button} from 'react-bootstrap'
+import logo from "../pages/images/LOGO3.png"
+import {Image} from "react-bootstrap";
 
 
 function Navbar() {
@@ -14,12 +17,13 @@ function Navbar() {
        {isLoggedIn
         ? (<>
             <Link to="/chooserol">
-              <button>Choose Rol</button>
+              <Button>Choose Rol</Button>
             </Link>
+            <Image src={logo} alt="logoNav" id="imageNav"></Image>
             <Link to="/">
-            <button onClick={logOutUser}>Logout</button>
+            <Button onClick={logOutUser}>Logout</Button>
             </Link>
-            <span>{user.name}</span>
+            
           </>)
         : 
         (<>
