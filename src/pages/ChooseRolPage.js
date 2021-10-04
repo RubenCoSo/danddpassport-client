@@ -30,8 +30,8 @@ export default function ChooseRolPage(props) {
     <Container>
         <Row>
             <Col>
-                <Button onClick = {playerButton} value = {'player'}>Player</Button>
-                <Button onClick = {playerButton} value = {'master'}>Master</Button>
+                <Button onClick = {playerButton} value = {'player'} id="chooseplayerbtn">Player</Button>
+                <Button onClick = {playerButton} value = {'master'} id="chooseplayerbtn">Master</Button>
             </Col>
         </Row>
     </Container>

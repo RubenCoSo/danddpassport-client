@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  background-image: url(../src/pages/images/backgrounds_compressed_grande.jpg);
-  background-repeat: no-repeat;
+  background-image: url(../src/pages/images/depositphotos_11787918-stock-photo-old-rusty-paper.jpg);
+  background-repeat: repeat;
   background-size: 100vw 100vh;
 }
 
@@ -185,4 +185,17 @@ b {
 .card {
   width: 80%;
   align-items: center;
+}
+
+#chooseplayerbtn {
+  width: 200px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-bottom: 2vh;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(245, 69, 38);
+  border-color: black;
+  color: black;
 }
