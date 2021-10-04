@@ -19,14 +19,14 @@ const DNDAPI = "https://www.dnd5eapi.co/api/";
 
 let savingThrowsArr = []
 let startingEquipmentArr = []
+let selEquiArr = []
 
 
 export default function CreateNewCharacter3(props) {
-  const [classInfo, setClassInfo] = useState()
   const [equipmentPerClass, setEquipmentPerClass] = useState()
   const [chooseCharacterEquipment, setChooseCharacterEquipment] = useState()
   const [isLoading, setIsLoading] = useState(true)
-  const [hitDiceThrow, setHitDiceThrow] = useState(0)
+  const [hitDiceThrow, setHitDiceThrow] = useState()
   const [diceHits, setDiceHits] =useState(0)
   const [choosedEquipment, setChoosedEquipment] = useState()
   const [savingThrows, setSavingThrows] = useState()
@@ -39,7 +39,6 @@ export default function CreateNewCharacter3(props) {
   useEffect(()=>{
       axios.get(`${DNDAPI}/classes/${characterClass}`)
       .then((classInfo)=>{
-        setClassInfo(classInfo)
         setChooseCharacterEquipment(classInfo.data.starting_equipment_options)
         classInfo.data.starting_equipment.forEach((equipment)=>{
           console.log(`equipment`,equipment);
@@ -69,6 +68,13 @@ export default function CreateNewCharacter3(props) {
           { headers: { Authorization: `Bearer ${storedToken}` } }        
         )
         .then((response) => {
+          savingThrowsArr = []
+          startingEquipmentArr = []
+          selEquiArr = []
+          setEquipmentPerClass()
+          setHitDiceThrow(0)
+          setChoosedEquipment()
+          setSavingThrows()
           props.history.push("/playerpage")
 
         })
@@ -104,6 +110,7 @@ export default function CreateNewCharacter3(props) {
                     allowedCheck={choose.choose}  
                     characterId ={characterId}
                     setChoosedEquipment = {setChoosedEquipment}
+                    selEquiArr = {selEquiArr}
                     />
                   </Col>
                 )

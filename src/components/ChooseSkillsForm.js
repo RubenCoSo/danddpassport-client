@@ -5,8 +5,7 @@ import {Form,Col, Row} from 'react-bootstrap'
 
 
 
-let selBasSkiArr = []
-let selSkiArr = []
+
 
 
 export default function ChooseSkills(props){
@@ -21,16 +20,16 @@ export default function ChooseSkills(props){
 
             let selectedSkill = e.target.value.split(" ").pop()
             console.log(selectedSkill)
-            selBasSkiArr = [...selBasSkiArr,selectedSkill]
-            console.log(`basic skills`,selBasSkiArr)
+            props.selBasSkiArr.push(selectedSkill)
+            console.log(`basic skills`,props.selBasSkiArr)
         }else{
 
-            selSkiArr = [...selSkiArr,e.target.value]
+            props.selSkiArr.push(e.target.value)
         }
 
 
-        props.setChoosedBasicSkills(selBasSkiArr)
-        props.setChoosedSkills(selSkiArr)
+        props.setChoosedBasicSkills(props.selBasSkiArr)
+        props.setChoosedSkills(props.selSkiArr)
     }
 
     return (

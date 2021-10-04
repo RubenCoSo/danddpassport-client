@@ -21,6 +21,7 @@ export default function CreateNewCharacter(props) {
   const [classes, setClasses] = useState([]);
   const { user } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true)
+  
 
   useEffect(() => {
     axios.get(`${DNDAPI}races`)
@@ -38,9 +39,11 @@ export default function CreateNewCharacter(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const created_by = user.name
+
     const userId = user._id;
 
-    const requestBody = { name, race, characterClass, userId };
+    const requestBody = { name, race, characterClass, created_by, userId };
 
     const storedToken = localStorage.getItem("authToken");
 

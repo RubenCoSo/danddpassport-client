@@ -16,10 +16,12 @@ const API_URL = process.env.REACT_APP_API_URL;
 const DNDAPI = "https://www.dnd5eapi.co/api/";
 
 let skiPerClass=[]
+let selBasSkiArr = []
+let selSkiArr = []
 
 
 export default function CreateNewCharacter3(props) {
-  const [skillsPerClass, setSkillsPerClass] = useState([])
+  const [skillsPerClass, setSkillsPerClass] = useState()
   const [chooseCharacterSkills, setChooseCharacterSkills] = useState()
   const [diceHits, setDiceHits] =useState(0)
   const [isLoading, setIsLoading] = useState(true)
@@ -39,11 +41,13 @@ export default function CreateNewCharacter3(props) {
         setDiceHits(classInfo.data.hit_die)
         setIsLoading(false)
       })
-      console.log(`skill per class`,skillsPerClass);
-      skillsPerClass.forEach((skill)=>{
-        console.log(`Skillpushed`,skill.name)
-        skiPerClass.push(skill.name)
-      })
+      
+      if(!isLoading){
+        skillsPerClass.forEach((skill)=>{
+          skiPerClass.push(skill.name.name)
+        })}
+        
+      
   },[])
 
 
@@ -66,6 +70,14 @@ export default function CreateNewCharacter3(props) {
         { headers: { Authorization: `Bearer ${storedToken}` } }        
       )
       .then((response) => {
+        
+        skiPerClass=[]
+        selBasSkiArr = []
+        selSkiArr = []
+        setDiceHits(0)
+        setSkillsPerClass()
+        setChoosedSkills()
+        setChoosedBasicSkills()
         props.history.push(`/createNewCharacter4/${characterId}/${characterClass}`)
 
       })
@@ -86,6 +98,8 @@ export default function CreateNewCharacter3(props) {
                   characterId ={characterId}
                   setChoosedSkills = {setChoosedSkills}
                   setChoosedBasicSkills = {setChoosedBasicSkills}
+                  selBasSkiArr =  {selBasSkiArr}  
+                  selSkiArr = {selSkiArr}
                   />
                 </Col>
               )

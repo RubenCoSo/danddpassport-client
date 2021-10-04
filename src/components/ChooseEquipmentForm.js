@@ -4,19 +4,18 @@ import { useState } from "react"
 import {Form,Col, Row} from 'react-bootstrap'
 
 
-let selEquiArr = []
+
 
 
 export default function ChooseEquipment(props){
     const [checkCount, setCheckCount] = useState(0)
-    const [disabledChecks, setDisabledChecks] = useState(false)
    
 
     const handleSelectedCheck=(e)=>{
         console.log(e.target.value)
         setCheckCount(checkCount+1)
-        selEquiArr.push(e.target.value)
-        props.setChoosedEquipment(selEquiArr)
+        props.selEquiArr.push(e.target.value)
+        props.setChoosedEquipment(props.selEquiArr)
     }
 
     // console.log(props.equipment)
