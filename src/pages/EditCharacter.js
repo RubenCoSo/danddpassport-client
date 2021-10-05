@@ -12,6 +12,12 @@ import {
 const DNDAPI = "https://www.dnd5eapi.co/api/";
 const API_URL = process.env.REACT_APP_API_URL;
 
+
+let skills = [];
+let basicSkills = [];
+let equipment = [];
+
+
 export default function EditCharacter(props) {
   const [strength, setStrength] = useState();
   const [constitution, setConstitution] = useState();
@@ -25,14 +31,14 @@ export default function EditCharacter(props) {
   const [traits, setTraits] = useState([]);
   const [character, setCharacter] = useState();
   const [level, setLevel] = useState();
-  const [skills, setSkills] = useState();
-  const [equipment, setEquipment] = useState();
+  /* const [skills, setSkills] = useState();
+  const [equipment, setEquipment] = useState(); */
 
   const [proficiency, setProficiency] = useState();
   const [skillsSelect, setSkillsSelect] = useState();
   const [equipmentSelect, setEquipmentSelect] = useState();
   const [basicSkillsSelect, setBasicSkillsSelect] = useState();
-  const [basicSkills, setBasicSkills] = useState();
+  /* const [basicSkills, setBasicSkills] = useState(); */
 
   const characterId = props.match.params.id;
   const storedToken = localStorage.getItem("authToken");
@@ -47,9 +53,9 @@ export default function EditCharacter(props) {
       })
       .then((foundCharacter) => {
         setCharacter(foundCharacter.data);
-        setSkills(character.skills);
+      /*   setSkills(character.skills);
         setBasicSkills(character.basicSkills);
-        setEquipment(character.equipment);
+        setEquipment(character.equipment); */
       })
       .catch((error) => console.log(error));
   }, []);
@@ -72,6 +78,10 @@ export default function EditCharacter(props) {
   const handleSelectedSkill = (e) => {
     let isSkillInclude = e.target.value.includes("Skill");
 
+    skills = character.skills;
+    basicSkills = character.basicSkills;
+    
+
     if (isSkillInclude) {
       let selectedSkill = e.target.value.split(" ").pop();
 
@@ -82,14 +92,16 @@ export default function EditCharacter(props) {
   };
 
   const handleSelectedEquipment = (e) => {
+    equipment = character.equipment;
     equipment.push(e.target.value);
+    
   };
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = {skills,equipment,basicSkills,level,strength,wisdom,charisma,intelligence,dexterity,constitution};
+    const requestBody = {skills,equipment,basicSkills,level,strength,wisdom,charisma,intelligence,dexterity,constitution, characterId};
 
     const storedToken = localStorage.getItem("authToken");
 
@@ -98,10 +110,14 @@ export default function EditCharacter(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
+          
         
-        setSkills("");
+       /*  setSkills("");
         setEquipment("");
-        setBasicSkills("");
+        setBasicSkills(""); */
+        equipment = [];
+        skills = [];
+        basicSkills = [];
         setLevel("");
         setStrength("");
         setWisdom("");
@@ -114,7 +130,7 @@ export default function EditCharacter(props) {
         
 
 
-        props.history.push(`/createnewcharacter2/${response.data._id}`)
+        props.history.push(`/playerpage`)
         
       })
       .catch((error) => console.log(error));
@@ -124,7 +140,7 @@ export default function EditCharacter(props) {
 
 
   return character ? (
-    <Form>
+    <Form onSubmit={handleSubmit} className="formChar">
       <Row className="align-items-center">
         <Form.Label className="me-sm-2" htmlFor="inlineFormCustomSelect">
           <b>
@@ -152,8 +168,12 @@ export default function EditCharacter(props) {
             <FormControl
               name="strength"
               value={strength}
-              onChange={(e) =>
-                setStrength(Number(e.target.value))
+              onChange={(e) => { 
+                  console.log("valor", e.target.value) 
+                  e.target.value ? setStrength(Number(e.target.value)): setStrength(character.stats.str)
+                  }
+
+                
               }
               id="inlineFormInputGroup"
               placeholder={`${character.stats.str}`}
