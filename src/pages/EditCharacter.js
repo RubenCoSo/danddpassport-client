@@ -19,33 +19,26 @@ export default function EditCharacter(props) {
   const [intelligence, setIntelligence] = useState();
   const [wisdom, setWisdom] = useState();
   const [charisma, setCharisma] = useState();
-  const [strengthMod, setStrengthMod] = useState(0);
-  const [constitutionMod, setConstitutionMod] = useState(0);
-  const [dexterityMod, setDexterityMod] = useState(0);
-  const [intelligenceMod, setIntelligenceMod] = useState(0);
-  const [wisdomMod, setWisdomMod] = useState(0);
-  const [charismaMod, setCharismaMod] = useState(0);
+  
   const [speed, setSpeed] = useState(0);
   const [languages, setLanguages] = useState([]);
   const [traits, setTraits] = useState([]);
   const [character, setCharacter] = useState();
   const [level, setLevel] = useState();
-  const [skill, setSkill] = useState();
+  const [skills, setSkills] = useState();
+  const [equipment, setEquipment] = useState();
 
   const [proficiency, setProficiency] = useState();
   const [skillsSelect, setSkillsSelect] = useState();
   const [equipmentSelect, setEquipmentSelect] = useState();
   const [basicSkillsSelect, setBasicSkillsSelect] = useState();
+  const [basicSkills, setBasicSkills] = useState();
 
   const characterId = props.match.params.id;
   const storedToken = localStorage.getItem("authToken");
-  /* const characterBasicSkills = character.basicSkills; */
-  /*  const skills = character.skills; */
+
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleSelectedSkill = (e) => {};
-
-  const handleSelectedEquipment = (e) =>{};
 
   useEffect(() => {
     axios
@@ -54,6 +47,9 @@ export default function EditCharacter(props) {
       })
       .then((foundCharacter) => {
         setCharacter(foundCharacter.data);
+        setSkills(character.skills);
+        setBasicSkills(character.basicSkills);
+        setEquipment(character.equipment);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -71,12 +67,70 @@ export default function EditCharacter(props) {
     });
   }, []);
 
+  
+
+  const handleSelectedSkill = (e) => {
+    let isSkillInclude = e.target.value.includes("Skill");
+
+    if (isSkillInclude) {
+      let selectedSkill = e.target.value.split(" ").pop();
+
+      basicSkills.push(selectedSkill);
+    } else {
+      skills.push(e.target.value);
+    }
+  };
+
+  const handleSelectedEquipment = (e) => {
+    equipment.push(e.target.value);
+  };
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const requestBody = {skills,equipment,basicSkills,level,strength,wisdom,charisma,intelligence,dexterity,constitution};
+
+    const storedToken = localStorage.getItem("authToken");
+
+    axios
+      .put(`${API_URL}/editCharacter`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        
+        setSkills("");
+        setEquipment("");
+        setBasicSkills("");
+        setLevel("");
+        setStrength("");
+        setWisdom("");
+        setCharisma("");
+        setIntelligence("");
+        setDexterity("");
+        setConstitution("");
+        setBasicSkillsSelect("");
+        setProficiency("")
+        
+
+
+        props.history.push(`/createnewcharacter2/${response.data._id}`)
+        
+      })
+      .catch((error) => console.log(error));
+
+      
+  };
+
+
   return character ? (
     <Form>
       <Row className="align-items-center">
-      <Form.Label className="me-sm-2" htmlFor="inlineFormCustomSelect">
-            <b><u> Stats</u> </b>
-          </Form.Label>
+        <Form.Label className="me-sm-2" htmlFor="inlineFormCustomSelect">
+          <b>
+            <u> Stats</u>{" "}
+          </b>
+        </Form.Label>
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInputGroup">Level</Form.Label>
           <InputGroup className="mb-2">
@@ -92,14 +146,14 @@ export default function EditCharacter(props) {
 
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInputGroup">
-            Strength / Race bonus(+{`${strengthMod}`})
+            Strength
           </Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="strength"
               value={strength}
               onChange={(e) =>
-                setStrength(Number(e.target.value) + strengthMod)
+                setStrength(Number(e.target.value))
               }
               id="inlineFormInputGroup"
               placeholder={`${character.stats.str}`}
@@ -109,14 +163,14 @@ export default function EditCharacter(props) {
         </Col>
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInputGroup">
-            Constitution / Race bonus(+{`${constitutionMod}`})
+            Constitution 
           </Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="constitution"
               value={constitution}
               onChange={(e) =>
-                setConstitution(Number(e.target.value) + constitutionMod)
+                setConstitution(Number(e.target.value))
               }
               id="inlineFormInputGroup"
               placeholder={character.stats.con}
@@ -125,14 +179,14 @@ export default function EditCharacter(props) {
         </Col>
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInputGroup">
-            Dexterity / Race bonus(+{`${dexterityMod}`})
+            Dexterity
           </Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="dexterity"
               value={dexterity}
               onChange={(e) =>
-                setDexterity(Number(e.target.value) + dexterityMod)
+                setDexterity(Number(e.target.value))
               }
               id="inlineFormInputGroup"
               placeholder={character.stats.dex}
@@ -142,14 +196,14 @@ export default function EditCharacter(props) {
 
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInputGroup">
-            Intelligence / Race bonus(+{`${intelligenceMod}`})
+            Intelligence
           </Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="intelligence"
               value={intelligence}
               onChange={(e) =>
-                setIntelligence(Number(e.target.value) + intelligenceMod)
+                setIntelligence(Number(e.target.value) )
               }
               id="inlineFormInputGroup"
               placeholder={character.stats.int}
@@ -159,13 +213,13 @@ export default function EditCharacter(props) {
 
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInputGroup">
-            Wisdom / Race bonus(+{`${wisdomMod}`})
+            Wisdom
           </Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="wisdom"
               value={wisdom}
-              onChange={(e) => setWisdom(Number(e.target.value) + wisdomMod)}
+              onChange={(e) => setWisdom(Number(e.target.value))}
               id="inlineFormInputGroup"
               placeholder={character.stats.wis}
             />
@@ -174,14 +228,14 @@ export default function EditCharacter(props) {
 
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInputGroup">
-            Charisma / Race bonus(+{`${charismaMod}`})
+            Charisma
           </Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="charisma"
               value={charisma}
               onChange={(e) =>
-                setCharisma(Number(e.target.value) + charismaMod)
+                setCharisma(Number(e.target.value))
               }
               id="inlineFormInputGroup"
               placeholder={character.stats.cha}
@@ -191,7 +245,10 @@ export default function EditCharacter(props) {
 
         <Col xs="auto" className="my-1">
           <Form.Label className="me-sm-2" htmlFor="inlineFormCustomSelect">
-            <b> <u>Proficiency </u></b>
+            <b>
+              {" "}
+              <u>Proficiency </u>
+            </b>
           </Form.Label>
           <Form.Select
             className="me-sm-2"
@@ -213,7 +270,10 @@ export default function EditCharacter(props) {
 
         <Col xs="auto" className="my-1">
           <Form.Label className="me-sm-2" htmlFor="inlineFormCustomSelect">
-            <b> <u>Equipment </u></b>
+            <b>
+              {" "}
+              <u>Equipment </u>
+            </b>
           </Form.Label>
           <Form.Select
             className="me-sm-2"

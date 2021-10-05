@@ -20,7 +20,9 @@ export default function CreateNewCharacter(props) {
   const [races, setRaces] = useState([]);
   const [classes, setClasses] = useState([]);
   const { user } = useContext(AuthContext);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
+  const [message, setMessage] = useState();
+  const [isError, setIsError] = useState(false);
   
 
   useEffect(() => {
@@ -60,7 +62,11 @@ export default function CreateNewCharacter(props) {
         props.history.push(`/createnewcharacter2/${response.data._id}`)
         
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setMessage("This character already exist")
+        setIsError(true)
+        props.history.push(`/createnewcharacter`)
+      });
 
       
   };
@@ -83,6 +89,7 @@ export default function CreateNewCharacter(props) {
               placeholder="Name"
             />
           </InputGroup>
+          {isError ? <span>{message}</span> :null}
         </Col>
         <Form>
           <Row className="align-items-center">
