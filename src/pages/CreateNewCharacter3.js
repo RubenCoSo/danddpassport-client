@@ -36,26 +36,25 @@ export default function CreateNewCharacter3(props) {
   useEffect(()=>{
       axios.get(`${DNDAPI}/classes/${characterClass}`)
       .then((classInfo)=>{
-        setSkillsPerClass(classInfo.data.proficiencies)
+        classInfo.data.proficiencies.forEach((skill)=>{
+          console.log(`FOREACH`,skill.name)
+          skiPerClass.push(skill.name)
+          console.log(`skiPerClass`, skiPerClass)
+        })
         setChooseCharacterSkills(classInfo.data.proficiency_choices)
         setDiceHits(classInfo.data.hit_die)
+        setSkillsPerClass(skiPerClass)
         setIsLoading(false)
       })
       
-      if(!isLoading){
-        skillsPerClass.forEach((skill)=>{
-          skiPerClass.push(skill.name.name)
-        })}
-        
-      
   },[])
+
 
 
   const handleSubmit = (e) => {
       
     e.preventDefault();
 
-    setSkillsPerClass(skiPerClass)
 
     console.log(`skill per class`, skillsPerClass);
     console.log(`choosedSkills`,choosedSkills);

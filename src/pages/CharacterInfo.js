@@ -66,10 +66,17 @@ function CharacterInfo(props) {
             <h5> <u>Proficiencies</u></h5>
             <div class="proficiencies">
             {isLoading ? null : character.basicSkills.map((skill)=>{
-              return <Link><p class="linkProfi">{skill}</p></Link>
+              return <Link><p className="linkProfi">{skill}</p></Link>
+              })}
+            </div>
+
+            <div class="proficiencies">
+            {isLoading ? null : character.skills.map((skill)=>{
+              return <Link><p className="linkProfi">{skill}</p></Link>
               })}
             </div>
           </Col>
+          
         </Row>
       </Container>
         )
