@@ -46,7 +46,7 @@ function CharacterCard(props) {
         <Link to={`/characterInfo/${props.character._id}`} id="link">
           <Button class="btnCard">Choose Character</Button>
         </Link>
-        <Link to={`/characterInfo/${props.character._id}`}>
+        <Link to={`/editCharacter/${props.character._id}`}>
           <Button class="btnCard">Edit</Button>
         </Link>
         <Button onClick={deleteCharacter} class="btnCard">
