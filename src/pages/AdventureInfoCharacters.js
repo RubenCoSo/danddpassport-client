@@ -1,6 +1,10 @@
-export default function AdventureInfoCharacters () {
+import { Container, Row, Col, Button } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 
+export default function AdventureInfoCharacters (props) {
+
+    console.log(props);
 
 
 
