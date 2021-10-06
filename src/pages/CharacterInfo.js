@@ -65,7 +65,7 @@ function CharacterInfo(props) {
         <Row >
           <Col sm={1} md={1}>
             <h5> <u>Basic Skills</u></h5>
-            <div class="Basic Skills">
+            <div class="stats">
             { character.basicSkills.map((skill)=>{
               return <Link key={skill} to ={`/skillInfo/${skill}`} ><p className="linkProfi">{skill}</p></Link>
               })}
@@ -79,14 +79,14 @@ function CharacterInfo(props) {
             </div>
 
             <h5> <u>Traits</u></h5>
-            <div class="traits">
+            <div class="stats">
             {character.traits.map((trait)=>{
               return <Link key={trait} to ={`/traitInfo/${trait}`}><p className="linkProfi">{trait}</p></Link>
               })}
             </div>
 
             <h5> <u>Equipment</u></h5>
-            <div class="equipment">
+            <div class="stats">
             {character.equipment.map((equip)=>{
               return <Link key={equip} to ={`/equipmentInfo/${equip}`}><p className="linkProfi">{equip}</p></Link>
               })}

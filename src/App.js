@@ -18,6 +18,9 @@ import CreateNewCharacter2 from "./pages/CreateNewCharacter2"
 import CreateNewCharacter3 from "./pages/CreateNewCharacter3";
 import CreateNewCharacter4 from "./pages/CreateNewCharacter4"
 import EditCharacter from "./pages/EditCharacter";
+import SkillInfo from "./pages/SkillInfo";
+import EquipmentInfo from "./pages/EquipmentInfo";
+
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
         <Route exact path="/createNewCharacter3/:id/:characterClass" component={CreateNewCharacter3}/>
         <Route exact path="/createNewCharacter4/:id/:characterClass" component={CreateNewCharacter4}/>
         <Route exact path="/editCharacter/:id" component={EditCharacter}/>
+        <Route exact path="/skillInfo/:skill" component={SkillInfo}/>
+        <Route exact path="/equipmentInfo/:equip"/>
+
 
 
         

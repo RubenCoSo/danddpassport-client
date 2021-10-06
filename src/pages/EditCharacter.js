@@ -170,13 +170,13 @@ export default function EditCharacter(props) {
               value={strength}
               onChange={(e) => { 
                   console.log("valor", e.target.value) 
-                  e.target.value ? setStrength(Number(e.target.value)): setStrength(character.stats.str)
+                  e.target.value ? setStrength(Number(e.target.value)): setStrength(character.stats?.str)
                   }
 
                 
               }
               id="inlineFormInputGroup"
-              placeholder={`${character.stats.str}`}
+              placeholder={`${character.stats?.str}`}
               // type="number"
             />
           </InputGroup>
