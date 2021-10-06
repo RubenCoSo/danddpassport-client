@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {Container,Row,Col,Form,Button,InputGroup, FormControl, Image} from "react-bootstrap"
+import {Container,Row,Col, Image} from "react-bootstrap"
 import { Link } from "react-router-dom";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -8,7 +8,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 function CharacterInfo(props) {
 
   const [character, setCharacter] = useState()
-  const [isLoading, setIsLoading] = useState(true)
 
   const characterId = props.match.params.id;
   console.log(characterId);
@@ -19,67 +18,84 @@ function CharacterInfo(props) {
     .then((response)=>{
       console.log(`character`,response.data);
       setCharacter(response.data)
-      setIsLoading(false)
     })
     .catch((err)=>console.log(err))
   },[])
 
+
   // return null
   
-    return (
+    return character ? (
       <Container class="info">
         <Row>
           <Col>
             <h1>Character info</h1>
           </Col>
         </Row>
-        
+        <Row>
           <Col sm={1} md={1}>
-            <Image src={isLoading ? null : character.image} id="profileImage"></Image>
+            <Image src={ character.image} id="profileImage"></Image>
           </Col>
           <Col sm={1} md={1}>
-            <h2> Name: {isLoading ? null : character.characterName}</h2>
-            <h4> Race: {isLoading ? null : character.race}</h4>
-            <h4> Class: {isLoading ? null : character.class}</h4>
+            <h2> Name: { character.characterName}</h2>
+            <h4> Race: { character.race}</h4>
+            <h4> Class: { character.class}</h4>
+            <h4> Level: { character.level}</h4>
           </Col>
+          </Row>
         <Row >
         
           <Col sm={1} md={1}>
             <h5> <u>Stats </u> </h5>
             <div class="stats">
-            <p>Strength : {isLoading ? null : character.stats.str}</p>
+            <p>Strength : { character.stats.str} /  Bonus:{ Math.floor(((Number(character.stats.str)-10)/2))}</p>
             <br/>
-            <p>Dexterity : {isLoading ? null : character.stats.dex}</p>
+            <p>Dexterity : { character.stats.dex}/  Bonus:{ Math.floor(((Number(character.stats.dex)-10)/2))}</p>
             <br/>
-            <p>Constitution : {isLoading ? null : character.stats.con}</p>
+            <p>Constitution : { character.stats.con}/  Bonus:{ Math.floor(((Number(character.stats.con)-10)/2))}</p>
             <br/>
-            <p>Intelligence : {isLoading ? null : character.stats.int}</p>
+            <p>Intelligence : { character.stats.int}/  Bonus:{ Math.floor(((Number(character.stats.int)-10)/2))}</p>
             <br/>
-            <p>Wisdom : {isLoading ? null : character.stats.wis}</p>
+            <p>Wisdom : { character.stats.wis}/  Bonus:{ Math.floor(((Number(character.stats.wis)-10)/2))}</p>
             <br/>
-            <p>Charisma : {isLoading ? null : character.stats.cha}</p>
+            <p>Charisma : { character.stats.cha}/  Bonus:{ Math.floor(((Number(character.stats.cha)-10)/2))}</p>
             </div>
           </Col>
         </Row>
         <Row >
           <Col sm={1} md={1}>
+            <h5> <u>Basic Skills</u></h5>
+            <div class="Basic Skills">
+            { character.basicSkills.map((skill)=>{
+              return <Link key={skill} to ={`/skillInfo/${skill}`} ><p className="linkProfi">{skill}</p></Link>
+              })}
+            </div>
+            
             <h5> <u>Proficiencies</u></h5>
             <div class="proficiencies">
-            {isLoading ? null : character.basicSkills.map((skill)=>{
-              return <Link><p className="linkProfi">{skill}</p></Link>
+            {character.skills.map((skill)=>{
+              return <p className="linkProfi">{skill}</p>
               })}
             </div>
 
-            <div class="proficiencies">
-            {isLoading ? null : character.skills.map((skill)=>{
-              return <Link><p className="linkProfi">{skill}</p></Link>
+            <h5> <u>Traits</u></h5>
+            <div class="traits">
+            {character.traits.map((trait)=>{
+              return <Link key={trait} to ={`/traitInfo/${trait}`}><p className="linkProfi">{trait}</p></Link>
+              })}
+            </div>
+
+            <h5> <u>Equipment</u></h5>
+            <div class="equipment">
+            {character.equipment.map((equip)=>{
+              return <Link key={equip} to ={`/equipmentInfo/${equip}`}><p className="linkProfi">{equip}</p></Link>
               })}
             </div>
           </Col>
-          
         </Row>
       </Container>
         )
+        :null
     }
 
 export default CharacterInfo;
