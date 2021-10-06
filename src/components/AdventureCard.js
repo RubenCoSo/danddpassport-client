@@ -31,7 +31,6 @@ export default function AdventureCard (props) {
     <Card style={{ width: '18rem' }}>
         <Card.Body>
             <Card.Title>{props.adventure.title}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
             <Card.Text>
                 {props.adventure.description}
             </Card.Text>
