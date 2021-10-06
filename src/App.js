@@ -43,7 +43,7 @@ function App() {
         <Route exact path="/skillInfo/:skill" component={SkillInfo}/>
         <Route exact path="/equipmentInfo/:equip" component={EquipmentInfo}/>
         <Route exact path="/traitInfo/:trait" component={TraitInfo}/>
-        <Route exact path="`/adventureInfo/characters/:id`" component={AdventureInfoCharacters}/>
+        <Route exact path="/adventureInfo/characters/:id" component={AdventureInfoCharacters}/>
         
 
 
