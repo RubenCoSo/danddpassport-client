@@ -12,11 +12,9 @@ import {
 const DNDAPI = "https://www.dnd5eapi.co/api/";
 const API_URL = process.env.REACT_APP_API_URL;
 
-
 let skills = [];
 let basicSkills = [];
 let equipment = [];
-
 
 export default function EditCharacter(props) {
   const [strength, setStrength] = useState();
@@ -25,7 +23,7 @@ export default function EditCharacter(props) {
   const [intelligence, setIntelligence] = useState();
   const [wisdom, setWisdom] = useState();
   const [charisma, setCharisma] = useState();
-  
+
   const [speed, setSpeed] = useState(0);
   const [languages, setLanguages] = useState([]);
   const [traits, setTraits] = useState([]);
@@ -45,7 +43,6 @@ export default function EditCharacter(props) {
 
   const [isLoading, setIsLoading] = useState(true);
 
-
   useEffect(() => {
     axios
       .get(`${API_URL}/character/${characterId}`, {
@@ -53,7 +50,16 @@ export default function EditCharacter(props) {
       })
       .then((foundCharacter) => {
         setCharacter(foundCharacter.data);
-      /*   setSkills(character.skills);
+        foundCharacter.data.skills.forEach((skill) => {
+          skills.push(skill);
+        });
+        foundCharacter.data.basicSkills.forEach((skill) => {
+          basicSkills.push(skill);
+        });
+        foundCharacter.data.equipment.forEach((equip) => {
+          equipment.push(equip);
+        });
+        /*   setSkills(character.skills);
         setBasicSkills(character.basicSkills);
         setEquipment(character.equipment); */
       })
@@ -73,14 +79,8 @@ export default function EditCharacter(props) {
     });
   }, []);
 
-  
-
   const handleSelectedSkill = (e) => {
     let isSkillInclude = e.target.value.includes("Skill");
-
-    skills = character.skills;
-    basicSkills = character.basicSkills;
-    
 
     if (isSkillInclude) {
       let selectedSkill = e.target.value.split(" ").pop();
@@ -92,16 +92,26 @@ export default function EditCharacter(props) {
   };
 
   const handleSelectedEquipment = (e) => {
-    equipment = character.equipment;
     equipment.push(e.target.value);
-    
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = {skills,equipment,basicSkills,level,strength,wisdom,charisma,intelligence,dexterity,constitution, characterId};
+    const requestBody = {
+      skills,
+      equipment,
+      basicSkills,
+      level,
+      strength: strength || character.stats.str,
+      wisdom: wisdom || character.stats.wis,
+      charisma: charisma || character.stats.cha,
+      intelligence: intelligence || character.stats.int,
+      dexterity: dexterity || character.stats.dex,
+      constitution: constitution || character.stats.con,
+      level: level || character.level,
+      characterId,
+    };
 
     const storedToken = localStorage.getItem("authToken");
 
@@ -110,9 +120,7 @@ export default function EditCharacter(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-          
-        
-       /*  setSkills("");
+        /*  setSkills("");
         setEquipment("");
         setBasicSkills(""); */
         equipment = [];
@@ -126,18 +134,12 @@ export default function EditCharacter(props) {
         setDexterity("");
         setConstitution("");
         setBasicSkillsSelect("");
-        setProficiency("")
-        
+        setProficiency("");
 
-
-        props.history.push(`/playerpage`)
-        
+        props.history.push(`/playerpage`);
       })
       .catch((error) => console.log(error));
-
-      
   };
-
 
   return character ? (
     <Form onSubmit={handleSubmit} className="formChar">
@@ -155,26 +157,23 @@ export default function EditCharacter(props) {
               value={level}
               onChange={(e) => setLevel(Number(e.target.value))}
               id="inlineFormInputGroup"
-              // placeholder={character.level}
+               placeholder={character.level}
             />
           </InputGroup>
         </Col>
 
         <Col xs="auto">
-          <Form.Label htmlFor="inlineFormInputGroup">
-            Strength
-          </Form.Label>
+          <Form.Label htmlFor="inlineFormInputGroup">Strength</Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="strength"
               value={strength}
-              onChange={(e) => { 
-                  console.log("valor", e.target.value) 
-                  e.target.value ? setStrength(Number(e.target.value)): setStrength(character.stats?.str)
-                  }
-
-                
-              }
+              onChange={(e) => {
+                console.log("valor", e.target.value);
+                e.target.value
+                  ? setStrength(Number(e.target.value))
+                  : setStrength(character.stats?.str);
+              }}
               id="inlineFormInputGroup"
               placeholder={`${character.stats?.str}`}
               // type="number"
@@ -182,32 +181,24 @@ export default function EditCharacter(props) {
           </InputGroup>
         </Col>
         <Col xs="auto">
-          <Form.Label htmlFor="inlineFormInputGroup">
-            Constitution 
-          </Form.Label>
+          <Form.Label htmlFor="inlineFormInputGroup">Constitution</Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="constitution"
               value={constitution}
-              onChange={(e) =>
-                setConstitution(Number(e.target.value))
-              }
+              onChange={(e) => setConstitution(Number(e.target.value))}
               id="inlineFormInputGroup"
               placeholder={character.stats.con}
             />
           </InputGroup>
         </Col>
         <Col xs="auto">
-          <Form.Label htmlFor="inlineFormInputGroup">
-            Dexterity
-          </Form.Label>
+          <Form.Label htmlFor="inlineFormInputGroup">Dexterity</Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="dexterity"
               value={dexterity}
-              onChange={(e) =>
-                setDexterity(Number(e.target.value))
-              }
+              onChange={(e) => setDexterity(Number(e.target.value))}
               id="inlineFormInputGroup"
               placeholder={character.stats.dex}
             />
@@ -215,16 +206,12 @@ export default function EditCharacter(props) {
         </Col>
 
         <Col xs="auto">
-          <Form.Label htmlFor="inlineFormInputGroup">
-            Intelligence
-          </Form.Label>
+          <Form.Label htmlFor="inlineFormInputGroup">Intelligence</Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="intelligence"
               value={intelligence}
-              onChange={(e) =>
-                setIntelligence(Number(e.target.value) )
-              }
+              onChange={(e) => setIntelligence(Number(e.target.value))}
               id="inlineFormInputGroup"
               placeholder={character.stats.int}
             />
@@ -232,9 +219,7 @@ export default function EditCharacter(props) {
         </Col>
 
         <Col xs="auto">
-          <Form.Label htmlFor="inlineFormInputGroup">
-            Wisdom
-          </Form.Label>
+          <Form.Label htmlFor="inlineFormInputGroup">Wisdom</Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="wisdom"
@@ -247,16 +232,12 @@ export default function EditCharacter(props) {
         </Col>
 
         <Col xs="auto">
-          <Form.Label htmlFor="inlineFormInputGroup">
-            Charisma
-          </Form.Label>
+          <Form.Label htmlFor="inlineFormInputGroup">Charisma</Form.Label>
           <InputGroup className="mb-2">
             <FormControl
               name="charisma"
               value={charisma}
-              onChange={(e) =>
-                setCharisma(Number(e.target.value))
-              }
+              onChange={(e) => setCharisma(Number(e.target.value))}
               id="inlineFormInputGroup"
               placeholder={character.stats.cha}
             />

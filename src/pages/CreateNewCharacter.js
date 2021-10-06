@@ -23,29 +23,28 @@ export default function CreateNewCharacter(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState();
   const [isError, setIsError] = useState(false);
-  
 
   useEffect(() => {
-    axios.get(`${DNDAPI}races`)
-    .then((races) => {
-      axios.get(`${DNDAPI}classes`)
-      .then((classes) => {
+    axios.get(`${DNDAPI}races`).then((races) => {
+      axios.get(`${DNDAPI}classes`).then((classes) => {
         setClasses(classes.data.results);
         setRaces(races.data.results);
-       
-        setIsLoading(false)
+
+        setIsLoading(false);
       });
     });
   }, []);
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const created_by = user.name
+    const created_by = user.name;
+
+    const level = 1;
 
     const userId = user._id;
 
-    const requestBody = { name, race, characterClass, created_by, userId };
+    const requestBody = { name, race, characterClass, created_by, userId, level };
 
     const storedToken = localStorage.getItem("authToken");
 
@@ -59,26 +58,21 @@ export default function CreateNewCharacter(props) {
         setName("");
         setRace("");
         setCharacterClass("");
-        props.history.push(`/createnewcharacter2/${response.data._id}`)
-        
+        props.history.push(`/createnewcharacter2/${response.data._id}`);
       })
       .catch((error) => {
-        setMessage("This character already exist")
-        setIsError(true)
-        props.history.push(`/createnewcharacter`)
+        setMessage("This character already exist");
+        setIsError(true);
+        props.history.push(`/createnewcharacter`);
       });
-
-      
   };
-
-
 
   return (
     <Form onSubmit={handleSubmit} className="formChar">
       <Row className="align-items-center" id="loginForm">
         <Col xs="auto">
           <Form.Label htmlFor="inlineFormInputGroup">
-          <b>Name</b>
+            <b>Name</b>
           </Form.Label>
           <InputGroup className="mb-2" aria-label="Toggle navigation">
             <FormControl
@@ -89,17 +83,13 @@ export default function CreateNewCharacter(props) {
               placeholder="Name"
             />
           </InputGroup>
-          {isError ? <span>{message}</span> :null}
+          {isError ? <span>{message}</span> : null}
         </Col>
         <Form>
           <Row className="align-items-center">
             <Col xs="auto" className="my-1">
-              <Form.Label
-                className="me-sm-2"
-                htmlFor="inlineFormCustomSelect"
-                
-              >
-               <b> Race </b>
+              <Form.Label className="me-sm-2" htmlFor="inlineFormCustomSelect">
+                <b> Race </b>
               </Form.Label>
               <Form.Select
                 className="me-sm-2"
@@ -107,20 +97,18 @@ export default function CreateNewCharacter(props) {
                 onChange={(e) => setRace(e.target.value)}
               >
                 <option value="0">Choose...</option>
-                {isLoading ? null : races.map((race) => {
-                  return <option value={race.name}>{race.name}</option>;
-                })}
+                {isLoading
+                  ? null
+                  : races.map((race) => {
+                      return <option value={race.name}>{race.name}</option>;
+                    })}
               </Form.Select>
             </Col>
           </Row>
         </Form>
         <Col xs="auto" className="my-1">
-          <Form.Label
-            className="me-sm-2"
-            htmlFor="inlineFormCustomSelect"
-            
-          >
-           <b> Class</b>
+          <Form.Label className="me-sm-2" htmlFor="inlineFormCustomSelect">
+            <b> Class</b>
           </Form.Label>
           <Form.Select
             className="me-sm-2"
@@ -128,9 +116,15 @@ export default function CreateNewCharacter(props) {
             onChange={(e) => setCharacterClass(e.target.value)}
           >
             <option value="0">Choose...</option>
-            { isLoading ? null : classes.map((classes) => {
-              return <option key={classes.name} value={classes.name}>{classes.name}</option>;
-            })}
+            {isLoading
+              ? null
+              : classes.map((classes) => {
+                  return (
+                    <option key={classes.name} value={classes.name}>
+                      {classes.name}
+                    </option>
+                  );
+                })}
           </Form.Select>
         </Col>
 
