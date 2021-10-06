@@ -17,7 +17,7 @@ function Navbar() {
        {isLoggedIn
         ? (<>
             <Link to="/chooserol">
-              <Button>Choose Rol</Button>
+              <Button>Rol</Button>
             </Link>
             <Image src={logo} alt="logoNav" id="imageNav"></Image>
             <Link to="/">
@@ -27,7 +27,7 @@ function Navbar() {
           </>)
         : 
         (<>
-          <Link to="/login"> <button>login</button> </Link>
+          <Link to="/login"> <button>Login</button> </Link>
         </>)
       }
     </nav> 

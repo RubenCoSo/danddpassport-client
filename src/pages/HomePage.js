@@ -4,16 +4,16 @@ import {Image} from "react-bootstrap";
 
 function HomePage() {
   return (
-    <Container>
+    <Container className= "homeImage">
       <div
         class="row index-row justify-content-center align-items-center"
         id="homemessage"
       >
         <div class="content">
-        <Image src={logo} alt="logo" id="image"></Image>
-          <h2 class="card-title">Welcome adventurous</h2>
+        
+          <h2 class="card-title"></h2>
           <h1 class="card-subtitle">
-            May your days be long, and your hardships few
+            
           </h1>
 
           {/* <Row xs={1} md={1} lg={2} xl={3}> 
