@@ -25,7 +25,11 @@ export default function ChooseRolPage(props) {
         { headers: { Authorization: `Bearer ${storedToken}` } }
       )
       .then((returnInfo) => {
-        e.target.value === "player" ? props.history.push("/playerpage") :  props.history.push("/masterPage")
+        if(e.target.value === "player"){
+          props.history.push("/playerpage")
+        }else{
+          props.history.push("/masterPage")
+        }
       })
       .catch((err) => console.log("error", err));
   }
