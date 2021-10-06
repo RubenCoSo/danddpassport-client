@@ -269,7 +269,7 @@ h5 {
 .stats {
   display: flex;
   flex-direction: column;
-  padding-left: 17vh;
+
   font-size: 3vh;
   font-weight: bold;
   border: 2px solid black;
@@ -284,7 +284,7 @@ h5 {
 .proficiencies {
   display: flex;
   flex-direction: column;
-  padding-left: 17vh;
+
   font-size: 3vh;
   font-weight: bold;
   border: 2px solid black;
