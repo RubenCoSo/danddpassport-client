@@ -20,6 +20,7 @@ import CreateNewCharacter4 from "./pages/CreateNewCharacter4"
 import EditCharacter from "./pages/EditCharacter";
 import SkillInfo from "./pages/SkillInfo";
 import EquipmentInfo from "./pages/EquipmentInfo";
+import TraitInfo from "./pages/TraitInfo";
 
 
 function App() {
@@ -38,7 +39,8 @@ function App() {
         <Route exact path="/createNewCharacter4/:id/:characterClass" component={CreateNewCharacter4}/>
         <Route exact path="/editCharacter/:id" component={EditCharacter}/>
         <Route exact path="/skillInfo/:skill" component={SkillInfo}/>
-        <Route exact path="/equipmentInfo/:equip"/>
+        <Route exact path="/equipmentInfo/:equip" component={EquipmentInfo}/>
+        <Route exact path="/traitInfo/:trait" component={TraitInfo}/>
 
 
 

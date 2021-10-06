@@ -7,25 +7,25 @@ import React from "react";
 const DNDAPI = "https://www.dnd5eapi.co/api/";
 
 
-export default function SkillInfo (props) {
-    const [skillInfo, setSkillInfo] = useState()
+export default function TraitInfo (props) {
+    const [traitInfo, setTraitInfo] = useState()
 
-    let skillString
-    let skillStringProps = props.match.params.skill
+    let traitString
+    let traitStringProps = props.match.params.trait
 
-    skillString = skillStringProps.replace(/[^a-z0-9\s-]/ig,'')
+    traitString = traitStringProps.replace(/[^a-z0-9\s-]/ig,'')
     .trim()
     .replace(/\s+/g, '-')
     .toLowerCase()
     
-    console.log(skillString);
+    console.log(traitString);
 
     useEffect(()=>{
-        axios.get(`${DNDAPI}skills/${skillString}`)
-        .then((skll)=>{
-            console.log(`res`,skll)
-            setSkillInfo(skll.data)
-          console.log(`set`,skll);
+        axios.get(`${DNDAPI}traits/${traitString}`)
+        .then((trait)=>{
+            console.log(`res`,trait)
+            setTraitInfo(trait.data)
+          console.log(`set`,trait);
         })
     },[])
 
@@ -33,25 +33,18 @@ export default function SkillInfo (props) {
 
     // return null
     
-    return skillInfo ? (
+    return traitInfo ? (
         <Container>
             <Row>
             <Col>
-                <h1>{skillInfo.name}</h1>
-            </Col>
-            </Row>
-
-            <Row>
-            <Col>
-                <h1>{skillInfo.ability_score.name}</h1>
+                <h1>{traitInfo.name}</h1>
             </Col>
             </Row>
             <Row>
             <Col>
-                <p>{skillInfo.desc}</p>
+                <p>{traitInfo.desc}</p>
             </Col>
             </Row>
-
             <Col>
               <Button onClick = {props.history.goBack}>
                   Back

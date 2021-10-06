@@ -48,17 +48,23 @@ function CharacterInfo(props) {
           <Col sm={1} md={1}>
             <h5> <u>Stats </u> </h5>
             <div class="stats">
-            <p>Strength : { character.stats.str} /  Bonus:{ Math.floor(((Number(character.stats.str)-10)/2))}</p>
+            <p>Strength : { character.stats.str}</p>
+             <p>Bonus:{ Math.floor(((Number(character.stats.str)-10)/2))}</p>
             <br/>
-            <p>Dexterity : { character.stats.dex}/  Bonus:{ Math.floor(((Number(character.stats.dex)-10)/2))}</p>
+            <p>Dexterity : { character.stats.dex}</p>
+              <p>Bonus:{ Math.floor(((Number(character.stats.dex)-10)/2))}</p>
             <br/>
-            <p>Constitution : { character.stats.con}/  Bonus:{ Math.floor(((Number(character.stats.con)-10)/2))}</p>
+            <p>Constitution : { character.stats.con}</p>
+              <p>Bonus:{ Math.floor(((Number(character.stats.con)-10)/2))}</p>
             <br/>
-            <p>Intelligence : { character.stats.int}/  Bonus:{ Math.floor(((Number(character.stats.int)-10)/2))}</p>
+            <p>Intelligence : { character.stats.int}</p>
+              <p>Bonus:{ Math.floor(((Number(character.stats.int)-10)/2))}</p>
             <br/>
-            <p>Wisdom : { character.stats.wis}/  Bonus:{ Math.floor(((Number(character.stats.wis)-10)/2))}</p>
+            <p>Wisdom : { character.stats.wis}</p>
+              <p>Bonus:{ Math.floor(((Number(character.stats.wis)-10)/2))}</p>
             <br/>
-            <p>Charisma : { character.stats.cha}/  Bonus:{ Math.floor(((Number(character.stats.cha)-10)/2))}</p>
+            <p>Charisma : { character.stats.cha}</p>
+              <p>Bonus:{ Math.floor(((Number(character.stats.cha)-10)/2))}</p>
             </div>
           </Col>
         </Row>
