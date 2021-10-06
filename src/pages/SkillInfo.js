@@ -34,7 +34,7 @@ export default function SkillInfo (props) {
     // return null
     
     return skillInfo ? (
-        <Container>
+        <Container className="info">
             <Row>
             <Col>
                 <h1>{skillInfo.name}</h1>

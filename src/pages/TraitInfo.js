@@ -34,7 +34,7 @@ export default function TraitInfo (props) {
     // return null
     
     return traitInfo ? (
-        <Container>
+        <Container className="info">
             <Row>
             <Col>
                 <h1>{traitInfo.name}</h1>

@@ -39,7 +39,7 @@ export default function EquipmentInfo(props){
     return equipment ? (
                 <Container>
             <Row>
-            <Col>
+            <Col className="info">
                 <h1>{equipment.name}</h1>
                 <h3>{equipment.equipment_category.name}</h3>
             </Col>
