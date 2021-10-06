@@ -195,6 +195,7 @@ export default function CreateNewCharacter2(props) {
       <Form onSubmit={handleSubmit}>
         <Row className="align-items-center">
           <Col xs="auto">
+            <h6>Throw 5d6 per ability and discard the lower one</h6>
             <Form.Label htmlFor="inlineFormInputGroup" >
               Strength / Race bonus(+{`${strengthMod}`})
             </Form.Label>

@@ -2,7 +2,6 @@ import axios from "axios";
 import { useContext } from "react";
 import { Button, Container, Row, Col, Image } from "react-bootstrap";
 import { AuthContext } from "../context/auth.context";
-import { Redirect } from "react-router-dom";
 import logo from "./images/LOGO3.png"
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -26,10 +25,10 @@ export default function ChooseRolPage(props) {
         { headers: { Authorization: `Bearer ${storedToken}` } }
       )
       .then((returnInfo) => {
-        return props.history.push("/playerpage");
+        e === "player" ? props.history.push("/playerpage") :  props.history.push("/masterPage")
       })
       .catch((err) => console.log("error", err));
-  };
+  }
 
   
 

@@ -31,6 +31,7 @@ function App() {
       <Switch>      
         <Route exact path="/" component={HomePage} />
         <Route exact path="/playerpage" component={PlayerPage} />
+        <Route exact path="/masterPage" component={PlayerPage} />
         <Route exact path="/createnewcharacter" component={CreateNewCharacter}/>
         <Route exact path="/chooserol" component={ChooseRolPage}/>
         <Route exact path="/characterInfo/:id" component={CharacterInfo}/>
