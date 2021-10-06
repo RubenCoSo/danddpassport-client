@@ -9,7 +9,7 @@ const API_URL = process.env.REACT_APP_API_URL
 
 
 
-function PlayerPage() {
+function PlayerPage(props) {
 
   const [characters, setCharacters] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -20,6 +20,8 @@ function PlayerPage() {
 
   
   const userId = user._id;
+
+  const path = props.match.path
 
 
 function getCharacters(){
@@ -52,7 +54,7 @@ return (
     {characters.map((character)=>{
       return (
         <Col key={character._id}>
-          <CharacterCard character = {character} getCharacters = {getCharacters}/> 
+          <CharacterCard character = {character} getCharacters = {getCharacters} path = {path}/> 
         </Col>)
     })}
     </CardGroup>

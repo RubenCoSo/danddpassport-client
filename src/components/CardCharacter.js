@@ -7,6 +7,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 function CharacterCard(props) {
   const character = props.character._id;
   const getCharacters = props.getCharacters;
+  const path = props.path
 
   console.log(props.character);
 
@@ -43,15 +44,34 @@ function CharacterCard(props) {
         </Card.Text>
       </Card.Body>
       <Card.Footer>
-        <Link to={`/characterInfo/${props.character._id}`} id="link">
-          <Button class="btnCard">Choose Character</Button>
-        </Link>
-        <Link to={`/editCharacter/${props.character._id}`}>
-          <Button class="btnCard">Edit</Button>
-        </Link>
-        <Button onClick={deleteCharacter} class="btnCard">
-          Delete
-        </Button>
+      { path === "/playerpage" ?
+        <>
+          <Link to={`/characterInfo/${props.character._id}`} id="link">
+            <Button class="btnCard">Choose Character</Button>
+          </Link>
+          <Link to={`/editCharacter/${props.character._id}`}>
+            <Button class="btnCard">Edit</Button>
+          </Link>
+          <Button onClick={deleteCharacter} class="btnCard">
+            Delete
+          </Button>
+        </>
+        :
+        <>
+          <Link to={`/characterInfo/${props.character._id}`} id="link">
+            <Button class="btnCard">Choose Character</Button>
+          </Link>
+          <Link to={`/editCharacter/${props.character._id}`}>
+            <Button class="btnCard">Edit</Button>
+          </Link><>
+          <Link to={`/characterInfo/${props.character._id}`} id="link">
+            <Button class="btnCard">Choose Character</Button>
+          </Link>
+          <Link to={`/editCharacter/${props.character._id}`}>
+            <Button class="btnCard">Edit</Button>
+          </Link>
+        </>
+      }
       </Card.Footer>
     </Card>
   );

@@ -6,6 +6,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export default function AdventureCard (props) {
     const adventure = props.adventure._id;
+  console.log(`holiiii`,props);
   const getAdventures = props.getAdventures;
 
   console.log(props.adventure);
