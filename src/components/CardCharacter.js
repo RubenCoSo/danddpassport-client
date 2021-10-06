@@ -9,7 +9,7 @@ function CharacterCard(props) {
   const getCharacters = props.getCharacters;
   const path = props.path
 
-  console.log(props.character);
+  console.log(`maps`,props.path);
 
   const deleteCharacter = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -57,20 +57,19 @@ function CharacterCard(props) {
           </Button>
         </>
         :
+        null
+      }
+      { path === "/masterPage" ?
         <>
           <Link to={`/characterInfo/${props.character._id}`} id="link">
             <Button class="btnCard">Choose Character</Button>
           </Link>
-          <Link to={`/editCharacter/${props.character._id}`}>
-            <Button class="btnCard">Edit</Button>
-          </Link><>
-          <Link to={`/characterInfo/${props.character._id}`} id="link">
-            <Button class="btnCard">Choose Character</Button>
-          </Link>
-          <Link to={`/editCharacter/${props.character._id}`}>
+          <Link to={`/masterEditCharacter/${props.character._id}`}>
             <Button class="btnCard">Edit</Button>
           </Link>
         </>
+        :
+        null
       }
       </Card.Footer>
     </Card>
