@@ -31,12 +31,14 @@ function App() {
         <Route exact path="/playerpage" component={PlayerPage} />
         <Route exact path="/masterPage" component={MasterPage} />
         
+        <Route exact path="/createnewcharacter" component={CreateNewCharacter}/>
         <Route exact path="/chooserol" component={ChooseRolPage}/>
         <Route exact path="/characterInfo/:id" component={CharacterInfo}/>
         <Route exact path="/createnewcharacter" component={CreateNewCharacter}/>
         <Route exact path="/createnewcharacter2/:id" component={CreateNewCharacter2}/>
         <Route exact path="/createNewCharacter3/:id/:characterClass" component={CreateNewCharacter3}/>
         <Route exact path="/createNewCharacter4/:id/:characterClass" component={CreateNewCharacter4}/>
+        <Route exact path="/createNewAdventure" component={CreateNewAdventure}/>
         <Route exact path="/editCharacter/:id" component={EditCharacter}/>
         <Route exact path="/skillInfo/:skill" component={SkillInfo}/>
         <Route exact path="/equipmentInfo/:equip" component={EquipmentInfo}/>
