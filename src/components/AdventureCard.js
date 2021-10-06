@@ -34,7 +34,7 @@ export default function AdventureCard (props) {
             <Card.Text>
                 {props.adventure.description}
             </Card.Text>
-            <Link to={`/adventureInfo/${adventure}`} id="link">
+            <Link to={`/adventureInfo/characters/${adventure}`} id="link">
                 <Button class="btnCard">Choose Adventure</Button>
             </Link>
             <Button onClick={deleteAdventure} class="btnCard">
