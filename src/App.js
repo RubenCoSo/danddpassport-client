@@ -17,6 +17,8 @@ import EditCharacter from "./pages/EditCharacter";
 import SkillInfo from "./pages/SkillInfo";
 import EquipmentInfo from "./pages/EquipmentInfo";
 import TraitInfo from "./pages/TraitInfo";
+import MasterPage from "./pages/MasterPage";
+import CreateNewAdventure from "./pages/CreateNewAdventure";
 
 
 function App() {
@@ -27,13 +29,15 @@ function App() {
       <Switch>      
         <Route exact path="/" component={HomePage} />
         <Route exact path="/playerpage" component={PlayerPage} />
-        <Route exact path="/masterPage" component={PlayerPage} />
+        <Route exact path="/masterPage" component={MasterPage} />
         <Route exact path="/createnewcharacter" component={CreateNewCharacter}/>
         <Route exact path="/chooserol" component={ChooseRolPage}/>
         <Route exact path="/characterInfo/:id" component={CharacterInfo}/>
+        <Route exact path="/createnewcharacter" component={CreateNewCharacter}/>
         <Route exact path="/createnewcharacter2/:id" component={CreateNewCharacter2}/>
         <Route exact path="/createNewCharacter3/:id/:characterClass" component={CreateNewCharacter3}/>
         <Route exact path="/createNewCharacter4/:id/:characterClass" component={CreateNewCharacter4}/>
+        <Route exact path="/createNewAdventure" component={CreateNewAdventure}/>
         <Route exact path="/editCharacter/:id" component={EditCharacter}/>
         <Route exact path="/skillInfo/:skill" component={SkillInfo}/>
         <Route exact path="/equipmentInfo/:equip" component={EquipmentInfo}/>

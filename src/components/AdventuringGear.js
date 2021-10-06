@@ -12,15 +12,27 @@ export default function AdventuringGear (props){
         <>
             <p>Category:{props.gear.gear_category.name}</p>
 
-            <p>Contains:</p>
-            <ul>
-                {props.gear.contents.map((gearItems)=>{
-                    return <li>{gearItems.item.name}: {gearItems.quantity}</li>
-                })}
-            </ul>
+            {props.gear.contents ? (
+                <>
+                <p>Contains:</p>
+                    <ul>
+                        {props.gear.contents.map((gearItems)=>{
+                            return <li>{gearItems.item.name}: {gearItems.quantity}</li>
+                        })}
+                    </ul>
+                </>)
 
+            :null
+            }
+            {props.gear.desc ? (
+                <>
+                <p>{props.gear.desc}</p>
+                    
+                </>)
+
+            :null
+            }
         </>
     )
-
 
 }

@@ -1,1 +1,1 @@
-export default CreateNewAdventure () {}
+export default function CreateNewAdventure () {}
