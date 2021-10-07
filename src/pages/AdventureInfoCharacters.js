@@ -30,8 +30,8 @@ export default function AdventureInfoCharacters (props) {
                 <Link to={`/adventureInfo/addCharacter/${adventureId}`}><Button variant="primary" size="lg">
           Add character
         </Button></Link>
-                <Link to={"/CreateNewAdventure"}><Button variant="primary" size="lg">
-          Monster
+                <Link to={`/adventureInfo/monsters/${adventureId}`}><Button variant="primary" size="lg">
+          Monsters
         </Button></Link>
                 </Col>
             </Row>

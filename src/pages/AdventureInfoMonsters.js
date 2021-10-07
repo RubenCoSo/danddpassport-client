@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import MonsterCard from "../components/MonsterCard";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -17,7 +18,7 @@ export default function AdventureInfoMonsters (props) {
         axios.get(`${API_URL}/monstersInAdventure/${adventureId}`,{headers: { Authorization: `Bearer ${storedToken}` }})
         .then((adventure)=>{
             console.log(`monstersInfo`,adventure);
-            setMonsters(adventure.data.monsters)
+            setMonsters(adventure.data)
             console.log(monsters);
         })
     },[])
