@@ -1,7 +1,7 @@
 body {
   margin: 0;
   background-image: url(../src/pages/images/depositphotos_11787918-stock-photo-old-rusty-paper.jpg);
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: 100vw 100vh;
 }
 
@@ -183,7 +183,6 @@ b {
   display: flex;
   justify-content: center;
   margin-top: 15vh;
-  border: 3px solid rgba(0, 0, 0, 0.363);
   border-radius: 20%;
   margin-left: 5vh;
   margin-right: 5vh;
@@ -331,4 +330,23 @@ h6 {
   padding-left: 6.5vh !important;
   font-size: 4vh !important;
   font-weight: bold !important;
+}
+
+.formMonster {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10vh;
+}
+.monsterinfo {
+  display: flex;
+  font-size: 4vh !important;
+  width: 60vh;
+  margin-left: -3vh;
+}
+
+li {
+  margin-left: -7vh;
+  font-size: 3.5vh;
+  width: 60vh;
 }

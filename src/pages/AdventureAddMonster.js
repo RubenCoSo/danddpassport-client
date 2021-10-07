@@ -57,11 +57,11 @@ export default function AdventureAddMonster (props){
 return (
     <Container>
     
-        <Form onSubmit={handleSubmit} className="formChar">
-            <Row className="align-items-center" id="loginForm">
+        <Form onSubmit={handleSubmit} className="formMonster">
+            <Row className="align-items-center" class="stats">
                 <Col>
                     <Form.Label className="me-sm-2" htmlFor="inlineFormCustomSelect">
-                    <b> Choose the Monsters </b>
+                    <h2 className="monsterinfo"> Choose the Monsters </h2>
                     </Form.Label>
                     <Form.Select
                     className="me-sm-2"
@@ -77,7 +77,7 @@ return (
                     
                 </Col>
                 <Col>
-                    <h4>Choosed Monsters</h4>
+                    <h4><u>Choosed Monsters</u></h4>
                     <ul>
                     {addedMonsters ? addedMonsters.map((addedMonster)=>{
                         return(<li key = {addedMonster}>{addedMonster}</li>)
