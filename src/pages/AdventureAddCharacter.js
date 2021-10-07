@@ -12,7 +12,6 @@ export default function AdventureAddCharacter (props){
     const [addedCharacters, setAddedCharacters] = useState([])
     const [addedCharactersId, setAddedCharactersId] =useState([])
     
-    let addedCharactersArr=[]
     const storedToken = localStorage.getItem("authToken")
     const adventureId = props.match.params.id
 
@@ -50,10 +49,8 @@ export default function AdventureAddCharacter (props){
             headers: { Authorization: `Bearer ${storedToken}` },
           })
           .then((response) => {
-            console.log(response);
-    
-            setAddedCharacters();
-            addedCharactersArr = []
+            setAddedCharacters()
+            setAddedCharactersId();
             props.history.push(`/adventureInfo/characters/${adventureId}`)
           })
           .catch((error) => {
