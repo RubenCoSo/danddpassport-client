@@ -65,8 +65,8 @@ return (
         <Form onSubmit={handleSubmit} className="formChar">
             <Row className="align-items-center" id="loginForm">
                 <Col>
-                    <Form.Label className="me-sm-2" htmlFor="inlineFormCustomSelect">
-                    <b> Choose the characters </b>
+                    <Form.Label className="me-sm-2" id="label2" htmlFor="inlineFormCustomSelect">
+                    <h2 className="characterinfo"> Choose the characters </h2>
                     </Form.Label>
                     <Form.Select
                     className="me-sm-2"
@@ -82,11 +82,11 @@ return (
                     
                 </Col>
                 <Col>
-                    <h4>Choosed Characters</h4>
+                    <h4><u>Choosed Characters</u></h4>
                     <ul>
                     
                     {addedCharacters ? addedCharacters.map((addedCharacter)=>{
-                        return(<li key = {addedCharacter}>{addedCharacter}</li>)
+                        return(<li className="addchar" key = {addedCharacter}>{addedCharacter}</li>)
                     }):null}
                     </ul>
                 </Col>
