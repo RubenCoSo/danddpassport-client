@@ -21,8 +21,6 @@ function PlayerPage(props) {
   
   const userId = user._id;
 
-  const path = props.match.path
-
 
 function getCharacters(){
   axios.get(`${API_URL}/user/${userId}`,{ headers: { Authorization: `Bearer ${storedToken}`}})
@@ -54,7 +52,7 @@ return (
     {characters.map((character)=>{
       return (
         <Col key={character._id}>
-          <CharacterCard character = {character} getCharacters = {getCharacters} path = {path}/> 
+          <CharacterCard character = {character} getCharacters = {getCharacters}/> 
         </Col>)
     })}
     </CardGroup>

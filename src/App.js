@@ -20,6 +20,8 @@ import TraitInfo from "./pages/TraitInfo";
 import MasterPage from "./pages/MasterPage";
 import CreateNewAdventure from "./pages/CreateNewAdventure";
 import AdventureInfoCharacters from "./pages/AdventureInfoCharacters";
+import AdventureAddCharacter from "./pages/AdventureAddCharacter";
+import AdventureInfoMonsters from "./pages/AdventureInfoMonsters";
 
 
 function App() {
@@ -44,6 +46,9 @@ function App() {
         <Route exact path="/equipmentInfo/:equip" component={EquipmentInfo}/>
         <Route exact path="/traitInfo/:trait" component={TraitInfo}/>
         <Route exact path="/adventureInfo/characters/:id" component={AdventureInfoCharacters}/>
+        <Route exact path="/adventureInfo/monsters/:id" component={AdventureInfoMonsters}/>
+        <Route exact path="/adventureInfo/addCharacter/:id" component={AdventureAddCharacter}/>
+
         
 
 
