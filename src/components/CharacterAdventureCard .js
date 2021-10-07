@@ -1,30 +1,8 @@
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL;
-
-function CharacterCard(props) {
-  const character = props.character._id;
-  const getCharacters = props.getCharacters;
-  const path = props.path
-
-  const deleteCharacter = () => {
-    const storedToken = localStorage.getItem("authToken");
-
-    axios
-      .post(
-        `${API_URL}/delete`,
-        { character },
-        { headers: { Authorization: `Bearer ${storedToken}` } }
-      )
-      .then((res) => {
-        getCharacters();
-      })
-
-      .catch((err) => console.log(err));
-  };
-
+function CharacterAdventureCard(props) {
+  console.log(props);
   return (
     <Card className="characterCard">
       <Card.Img
@@ -45,15 +23,12 @@ function CharacterCard(props) {
           <Link to={`/characterInfo/${props.character._id}`} id="link">
             <Button class="btnCard">Choose Character</Button>
           </Link>
-          <Link to={`/editCharacter/${props.character._id}`}>
+          <Link to={`/masterEditCharacter/${props.character._id}`}>
             <Button class="btnCard">Edit</Button>
           </Link>
-          <Button onClick={deleteCharacter} class="btnCard">
-            Delete
-          </Button>
       </Card.Footer>
     </Card>
   );
 }
 
-export default CharacterCard;
+export default CharacterAdventureCard;

@@ -2,8 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import CharacterCard from "../components/CardCharacter";
-
+import CharacterAdventureCard from "../components/CharacterAdventureCard ";
 const API_URL = process.env.REACT_APP_API_URL;
 
 
@@ -15,18 +14,20 @@ export default function AdventureInfoCharacters (props) {
 
     useEffect(()=>{
 
-        axios.get(`${API_URL}/charactersInAdventure`,{headers: { Authorization: `Bearer ${storedToken}` }})
-        .then((charactersInfo)=>{
-            setCharacters(charactersInfo.data)
+        axios.get(`${API_URL}/charactersInAdventure/${adventureId}`,{headers: { Authorization: `Bearer ${storedToken}` }})
+        .then((adventure)=>{
+            console.log(`charactersInfo`,adventure);
+            setCharacters(adventure.data.characters)
+            console.log(characters);
         })
-    })
+    },[])
 
 
-    return(
+    return characters ? (
         <Container>
             <Row>
                 <Col>
-                <Link to={"/adventure/addCharacter"}><Button variant="primary" size="lg">
+                <Link to={`/adventureInfo/addCharacter/${adventureId}`}><Button variant="primary" size="lg">
           Add character
         </Button></Link>
                 <Link to={"/CreateNewAdventure"}><Button variant="primary" size="lg">
@@ -35,8 +36,17 @@ export default function AdventureInfoCharacters (props) {
                 </Col>
             </Row>
             <Row>
-                {}
+            {characters.map((character)=>{
+                
+                return (
+                <Col key= {character.characterName}>
+                <CharacterAdventureCard character = {character}/>
+                </Col>
+                )
+            })}
+                
             </Row>
         </Container>
     )
+    :null
 }
