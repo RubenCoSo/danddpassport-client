@@ -6,22 +6,19 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 function MonsterCard(props) {
   const monster = props.monster._id;
-  const getMonster = props.getMonster;
-  const path = props.path;
-
-  console.log(`maps`, props.path);
+  const getMonsters = props.getMonsters;
 
   const deleteMonster = () => {
     const storedToken = localStorage.getItem("authToken");
 
     axios
       .post(
-        `${API_URL}/delete`,
+        `${API_URL}/deleteMonster`,
         { monster },
         { headers: { Authorization: `Bearer ${storedToken}` } }
       )
       .then((res) => {
-        getMonster();
+        getMonsters();
       })
 
       .catch((err) => console.log(err));

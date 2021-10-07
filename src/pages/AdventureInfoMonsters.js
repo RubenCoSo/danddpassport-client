@@ -13,24 +13,21 @@ export default function AdventureInfoMonsters (props) {
     const adventureId = props.match.params.id
     const storedToken = localStorage.getItem("authToken");
 
-    useEffect(()=>{
-
+    function getMonsters(){
         axios.get(`${API_URL}/monstersInAdventure/${adventureId}`,{headers: { Authorization: `Bearer ${storedToken}` }})
         .then((adventure)=>{
             console.log(`monstersInfo`,adventure);
             setMonsters(adventure.data.monsters)
             console.log(monsters);
         })
+    }
+
+    useEffect(()=>{
+        getMonsters()
+        
     },[])
 
-    // function getCharacters(){
-    //     axios.get(`${API_URL}/user/${userId}`,{ headers: { Authorization: `Bearer ${storedToken}`}})
-    //     .then((userInfo)=>{
-    //       console.log(userInfo)
-    //       setCharacters(userInfo.data.characters)
-    //       setIsLoading(false)
-          
-    //     })
+
 
 
     return (
@@ -48,8 +45,8 @@ export default function AdventureInfoMonsters (props) {
             <Row>
             {monsters ? monsters.map((monster)=>{
                 return (
-                <Col key= {monster.name}>
-                <MonsterCard monster = {monster}/>
+                <Col key= {monster._id}>
+                <MonsterCard monster = {monster} getMonsters ={getMonsters}/>
                 </Col>
                 )
             }):null}
