@@ -44,6 +44,8 @@ export default function AdventureInfoCharacters (props) {
                 </Col>
                 )
             })}
+
+            
                 
             </Row>
         </Container>

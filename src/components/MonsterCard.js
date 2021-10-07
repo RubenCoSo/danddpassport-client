@@ -33,13 +33,9 @@ function MonsterCard(props) {
         <Card.Title>{props.monster.name}</Card.Title>
       </Card.Body>
       <Card.Footer>
-        (
-          <>
-            <Button onClick={deleteMonster} class="btnCard">
-              Delete
-            </Button>
-          </>
-        ) 
+        <Button onClick={deleteMonster} class="btnCard">
+          Delete
+        </Button> 
       </Card.Footer>
     </Card>
   );

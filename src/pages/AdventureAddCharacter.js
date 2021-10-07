@@ -51,7 +51,7 @@ export default function AdventureAddCharacter (props){
           .then((response) => {
             setAddedCharacters()
             setAddedCharactersId();
-            props.history.push(`/adventureInfo/characters/${adventureId}`)
+            props.history.push(`/adventureInfo/characters/${response.data._id}`)
           })
           .catch((error) => {
             console.log(error);
@@ -85,9 +85,9 @@ return (
                     <h4>Choosed Characters</h4>
                     <ul>
                     
-                    {addedCharacters.map((addedCharacter)=>{
+                    {addedCharacters ? addedCharacters.map((addedCharacter)=>{
                         return(<li key = {addedCharacter}>{addedCharacter}</li>)
-                    })}
+                    }):null}
                     </ul>
                 </Col>
                 <Col>
@@ -95,6 +95,11 @@ return (
                     Add characters
                 </Button>
                 </Col>
+                <Col>
+              <Button onClick = {props.history.goBack}>
+                  Back
+              </Button>
+            </Col>
             </Row>
         </Form>
     </Container>

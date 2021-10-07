@@ -18,13 +18,22 @@ export default function AdventureInfoMonsters (props) {
         axios.get(`${API_URL}/monstersInAdventure/${adventureId}`,{headers: { Authorization: `Bearer ${storedToken}` }})
         .then((adventure)=>{
             console.log(`monstersInfo`,adventure);
-            setMonsters(adventure.data)
+            setMonsters(adventure.data.monsters)
             console.log(monsters);
         })
     },[])
 
+    // function getCharacters(){
+    //     axios.get(`${API_URL}/user/${userId}`,{ headers: { Authorization: `Bearer ${storedToken}`}})
+    //     .then((userInfo)=>{
+    //       console.log(userInfo)
+    //       setCharacters(userInfo.data.characters)
+    //       setIsLoading(false)
+          
+    //     })
 
-    return monsters ? (
+
+    return (
         <Container>
             <Row>
                 <Col>
@@ -37,17 +46,16 @@ export default function AdventureInfoMonsters (props) {
                 </Col>
             </Row>
             <Row>
-            {/* {monsters.map((monster)=>{
-                
+            {monsters ? monsters.map((monster)=>{
                 return (
                 <Col key= {monster.name}>
                 <MonsterCard monster = {monster}/>
                 </Col>
                 )
-            })} */}
+            }):null}
                 
             </Row>
         </Container>
     )
-    :null
+    
 }

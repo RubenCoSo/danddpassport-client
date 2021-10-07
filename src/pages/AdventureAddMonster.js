@@ -12,7 +12,6 @@ export default function AdventureAddMonster (props){
     const [monsters, setMonsters]=useState()
     const [addedMonsters, setAddedMonsters] = useState([])
     
-    const storedToken = localStorage.getItem("authToken")
 
     const adventureId = props.match.params.id
 
@@ -45,15 +44,14 @@ export default function AdventureAddMonster (props){
   
           axios.post(`${API_URL}/adventureMonsters`, requestBody, {headers: { Authorization: `Bearer ${storedToken}` },})
           .then((response) => {
-            console.log(response);
-    
+            console.log(`response`,response);
             setAddedMonsters();
-            props.history.push(`/adventureInfo/monsters/${adventureId}`)
+            props.history.push(`/adventureInfo/monsters/${response.data._id}`)
           })
           .catch((error) => {
             console.log(error);
           });
-      };
+    };
 
 // return null
 return (
@@ -81,10 +79,9 @@ return (
                 <Col>
                     <h4>Choosed Monsters</h4>
                     <ul>
-                    
-                    {addedMonsters.map((addedMonster)=>{
+                    {addedMonsters ? addedMonsters.map((addedMonster)=>{
                         return(<li key = {addedMonster}>{addedMonster}</li>)
-                    })}
+                    }):null}
                     </ul>
                 </Col>
                 <Col>
@@ -92,6 +89,11 @@ return (
                     Add Monsters
                 </Button>
                 </Col>
+                <Col>
+              <Button onClick = {props.history.goBack}>
+                  Back
+              </Button>
+            </Col>
             </Row>
         </Form>
     </Container>
