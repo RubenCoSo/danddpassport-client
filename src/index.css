@@ -1,7 +1,7 @@
 body {
   margin: 0;
   background-image: url(../src/pages/images/depositphotos_11787918-stock-photo-old-rusty-paper.jpg);
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-size: 100vw 100vh;
 }
 
@@ -324,4 +324,11 @@ ul {
   font-size: 3vh;
   font-weight: bold;
   margin-left: 14vh;
+}
+
+h6 {
+  display: flex;
+  padding-left: 6.5vh !important;
+  font-size: 4vh !important;
+  font-weight: bold !important;
 }
